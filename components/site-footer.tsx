@@ -1,34 +1,87 @@
-import { nav, site } from "@/lib/site";
+import Link from "next/link";
+import { fields, site } from "@/lib/site";
+
+const pages = [
+  { label: "Nabídka služeb", href: "/nabidka-sluzeb" },
+  { label: "Reference", href: "/reference" },
+  { label: "Fotogalerie", href: "/fotogalerie" },
+  { label: "Certifikáty", href: "/certifikaty" },
+  { label: "O nás", href: "/o-nas" },
+  { label: "Kontakt", href: "/kontakt" },
+];
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-ink-600/70 bg-ink-950">
-      <div className="shell flex flex-col gap-8 py-10 lg:flex-row lg:items-center lg:justify-between">
-        <div className="flex items-center gap-3">
-          <span aria-hidden className="block h-5 w-[3px] bg-signal" />
-          <span className="font-display text-[13px] font-semibold uppercase tracking-[0.14em] text-steel-200">
-            {site.name}
-          </span>
+    <footer className="border-t border-line bg-paper-200">
+      <div className="shell grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <p className="text-[15px] font-semibold text-ink">{site.name}</p>
+          <p className="mt-3 text-[13.5px] leading-relaxed text-ink-700">
+            {site.address.street}
+            <br />
+            {site.address.city}
+          </p>
+          <p className="mt-3 font-mono text-[12.5px] leading-relaxed text-ink-500">
+            IČ {site.ico}
+            <br />
+            DIČ {site.dic}
+          </p>
         </div>
 
-        <nav
-          className="flex flex-wrap gap-x-6 gap-y-2"
-          aria-label="Navigace v zápatí"
-        >
-          {nav.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-[13px] text-steel-400 transition-colors hover:text-steel-100"
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
+        <div>
+          <h2 className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-500">
+            Obory
+          </h2>
+          <ul className="mt-4 space-y-2.5">
+            {fields.map((f) => (
+              <li key={f.slug}>
+                <Link
+                  href={`/${f.slug}`}
+                  className="text-[13.5px] text-ink-700 transition-colors hover:text-signal"
+                >
+                  {f.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-        <p className="font-mono text-[11px] text-steel-400">
-          IČ {site.ico} / {site.address.street}, {site.address.city}
-        </p>
+        <div>
+          <h2 className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-500">
+            Stránky
+          </h2>
+          <ul className="mt-4 space-y-2.5">
+            {pages.map((p) => (
+              <li key={p.href}>
+                <Link
+                  href={p.href}
+                  className="text-[13.5px] text-ink-700 transition-colors hover:text-signal"
+                >
+                  {p.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h2 className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-500">
+            Kontakt
+          </h2>
+          <a
+            href={site.phoneHref}
+            className="mt-4 block font-mono text-xl text-ink transition-colors hover:text-signal"
+          >
+            {site.phone}
+          </a>
+          <a
+            href={`mailto:${site.email}`}
+            className="mt-2 block break-all text-[13.5px] text-ink-700 transition-colors hover:text-signal"
+          >
+            {site.email}
+          </a>
+          <p className="mt-4 text-[13.5px] text-ink-500">{site.area}</p>
+        </div>
       </div>
     </footer>
   );

@@ -1,60 +1,57 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: "class",
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./lib/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
+        // Papír technického listu, studená neutrální škála.
+        paper: {
+          DEFAULT: "#F2F3F1",
+          200: "#E9EBE8",
+          300: "#DFE2DE",
+        },
         ink: {
-          DEFAULT: "#0A1015",
-          950: "#080D11",
-          900: "#0A1015",
-          800: "#0E161D",
-          700: "#131E27",
-          600: "#1A2833",
-          500: "#22343F",
+          DEFAULT: "#131A20",
+          700: "#46535C",
+          500: "#5F6B72",
+          300: "#9AA3A0",
         },
-        steel: {
-          400: "#8A9AA8",
-          300: "#A9B7C3",
-          200: "#C9D4DD",
-          100: "#E6ECF1",
+        line: {
+          DEFAULT: "#C6CCC9",
+          strong: "#A4ACA9",
         },
+        // Jediný akcent. Signální červená jako na štítcích rozvaděčů.
         signal: {
-          DEFAULT: "#B3342B",
-          hover: "#C64236",
-          soft: "rgba(179, 52, 43, 0.12)",
-          // Zesvětlená varianta pro text a ikony na tmavém podkladu (WCAG AA).
-          text: "#E9887B",
+          DEFAULT: "#A82F26",
+          hover: "#8E241C",
+          soft: "#F4E7E5",
         },
       },
       fontFamily: {
-        display: ["var(--font-display)", "system-ui", "sans-serif"],
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
         mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
+      // Technický list nemá zaoblené hrany.
       borderRadius: {
-        // Jediná škála: plochy 4px, nic zaobleného navíc.
         none: "0px",
-        sm: "2px",
-        DEFAULT: "4px",
-        md: "4px",
-        lg: "4px",
-        xl: "4px",
+        sm: "0px",
+        DEFAULT: "0px",
+        md: "0px",
+        lg: "0px",
+        xl: "0px",
+        full: "9999px",
       },
       maxWidth: {
-        shell: "1320px",
-      },
-      boxShadow: {
-        panel: "0 24px 60px -32px rgba(3, 8, 12, 0.9)",
+        shell: "1240px",
+        measure: "68ch",
       },
       transitionTimingFunction: {
         out: "cubic-bezier(0.16, 1, 0.3, 1)",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [],
 };
 
 export default config;

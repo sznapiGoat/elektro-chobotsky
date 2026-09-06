@@ -3,58 +3,46 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 @layer base {
   html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 5.5rem;
     -webkit-tap-highlight-color: transparent;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-  }
-
   body {
-    @apply bg-ink text-steel-100 font-sans antialiased;
+    @apply bg-paper text-ink font-sans antialiased;
   }
 
   ::selection {
-    background-color: rgba(179, 52, 43, 0.35);
-    color: #f2f6f9;
+    background-color: #f4e7e5;
+    color: #131a20;
   }
 
   :focus-visible {
-    outline: 2px solid #c64236;
+    outline: 2px solid #a82f26;
     outline-offset: 2px;
+  }
+
+  /* Číslice v tabulkách a výčtech mají držet sloupec. */
+  table,
+  .tabular {
+    font-variant-numeric: tabular-nums;
   }
 }
 
 @layer components {
   .shell {
-    @apply mx-auto w-full max-w-shell px-5 sm:px-8 lg:px-12;
+    @apply mx-auto w-full max-w-shell px-5 sm:px-8 lg:px-10;
   }
 
-  .hairline {
-    @apply border-ink-600/70;
+  /* Odstavcový text stránky. Šířka řádku je pevná, aby se dal číst. */
+  .prose-list p {
+    @apply text-[15.5px] leading-[1.75] text-ink-700;
   }
 
-  /* Technický rastr: jemná mřížka, kterou používají jen sekce s daty. */
-  .grid-plane {
-    background-image: linear-gradient(
-        to right,
-        rgba(137, 154, 168, 0.07) 1px,
-        transparent 1px
-      ),
-      linear-gradient(to bottom, rgba(137, 154, 168, 0.07) 1px, transparent 1px);
-    background-size: 72px 72px;
-  }
-
-  .label {
-    @apply font-mono text-[11px] uppercase tracking-[0.2em] text-steel-400;
+  .prose-list p + p {
+    @apply mt-4;
   }
 }

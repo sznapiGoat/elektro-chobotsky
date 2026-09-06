@@ -1,6 +1,7 @@
 export const site = {
   name: "Miroslav Chobotský",
-  trade: "Elektroinstalace a hromosvody",
+  shortName: "M. Chobotský",
+  trade: "Elektroinstalace, hromosvody, revize",
   founded: 1995,
   phone: "606 145 684",
   phoneHref: "tel:+420606145684",
@@ -9,59 +10,101 @@ export const site = {
   ico: "616 70 341",
   dic: "CZ7310230598",
   area: "Středočeský kraj a Praha",
+  areaIn: "ve Středočeském kraji a v Praze",
   about:
     "Firma byla založena v roce 1995. Předmětem podnikání jsou silnoproudé a slaboproudé elektroinstalace, instalace zabezpečovacích systémů Jablotron, montáž hromosvodů, výchozí a pravidelné revize el. zařízení. Působíme převážně ve Středočeském kraji a v Praze.",
 };
 
 export const nav = [
-  { label: "O nás", href: "#o-nas" },
-  { label: "Nabídka služeb", href: "#sluzby" },
-  { label: "Reference", href: "#reference" },
-  { label: "Fotogalerie", href: "#fotogalerie" },
-  { label: "Certifikáty", href: "#certifikaty" },
-  { label: "Kontakt", href: "#kontakt" },
+  { label: "Nabídka služeb", href: "/nabidka-sluzeb" },
+  { label: "Reference", href: "/reference" },
+  { label: "Fotogalerie", href: "/fotogalerie" },
+  { label: "Certifikáty", href: "/certifikaty" },
+  { label: "O nás", href: "/o-nas" },
+  { label: "Kontakt", href: "/kontakt" },
 ];
 
-/** Oprávnění a školení doložená naskenovanými dokumenty v sekci Certifikáty. */
+/** Pět oborů, každý má vlastní stránku. */
+export const fields = [
+  {
+    slug: "elektroinstalace",
+    title: "Elektroinstalace",
+    lead: "Silnoproudé i slaboproudé rozvody v rodinných a bytových domech, provozovnách a průmyslových objektech.",
+    keywords: "RD, BD a průmysl, odběrná místa, přípojky NN, veřejné osvětlení",
+  },
+  {
+    slug: "hromosvody",
+    title: "Hromosvody",
+    lead: "Montáž a revize ochrany před bleskem podle ČSN EN 62305. Jímací soustavy, svody a zemniče.",
+    keywords: "montáž, opravy, revize hromosvodů",
+  },
+  {
+    slug: "revize",
+    title: "Revize",
+    lead: "Výchozí a periodické revize vyhrazených elektrických zařízení v rozsahu E2A.",
+    keywords: "výchozí a periodické revize, revizní zprávy",
+  },
+  {
+    slug: "zabezpecovaci-systemy",
+    title: "Zabezpečovací systémy",
+    lead: "Montáž a rozšíření systémů JABLOTRON 100+ a Mercury. Certifikát výrobce a koncese k ochraně majetku a osob.",
+    keywords: "Jablotron 100+, Mercury, servis a rozšíření",
+  },
+  {
+    slug: "elektricke-vytapeni",
+    title: "Elektrické vytápění",
+    lead: "Přímotopy, elektrické kotle, akumulační kamna a topné kabely včetně ochrany okapů.",
+    keywords: "přímotopy, kotle, akumulace, topné kabely",
+  },
+];
+
+/** Původní výčet služeb z Webnode webu, zachovaný slovo za slovem. */
+export const originalServices = [
+  { text: "elektroinstalace RD, BD a průmyslových objektů", field: "elektroinstalace" },
+  { text: "instalace zabezpečovacích systémů Jablotron", field: "zabezpecovaci-systemy" },
+  { text: "realizace nových a úprava stávajících odběrných míst", field: "elektroinstalace" },
+  { text: "elektrické přípojky NN", field: "elektroinstalace" },
+  { text: "montáž a údržba veřejného osvětlení", field: "elektroinstalace" },
+  { text: "hromosvody", field: "hromosvody" },
+  {
+    text: "elektrické topení, přímotopy, el. kotle, akumulační kamna",
+    field: "elektricke-vytapeni",
+  },
+  {
+    text: "topné kabely, podlahové topení, ochrana okapů, ochrana potrubí, ochrana venkovních ploch",
+    field: "elektricke-vytapeni",
+  },
+  { text: "výchozí a periodické revize", field: "revize" },
+];
+
+/** Nejsilnější oprávnění. Čísla a data jsou z naskenovaných dokladů. */
 export const credentials = [
   {
-    key: "ticr",
     issuer: "Technická inspekce ČR",
     title: "Osvědčení k revizím vyhrazených elektrických zařízení",
-    ref: "ev. č. 5098/25/R-EZ-E2A",
-    scope:
-      "Rozsah E2A: zařízení do 1 kV AC a 1,5 kV DC včetně hromosvodů, v prostředí bez nebezpečí výbuchu.",
-    valid: "Platnost do 24. 6. 2030",
+    ref: "5098/25/R-EZ-E2A",
+    valid: "do 24. 6. 2030",
     doc: "ticr-osvedceni-1",
   },
   {
-    key: "jablotron",
-    issuer: "Jablotron a.s.",
-    title: "Certifikovaná montáž JABLOTRON 100+ a Mercury",
-    ref: "Akademie Jablotron",
-    scope:
-      "Absolvovaný odborný kurz k technickým parametrům a montáži zabezpečovacích systémů Jablotron.",
-    valid: "Vystaveno 14. 6. 2025",
-    doc: "jablotron-100-mercury",
-  },
-  {
-    key: "zpusobilost",
     issuer: "Elektroservis VV s.r.o.",
-    title: "Odborná způsobilost dle NV 194/2022 Sb.",
+    title: "Odborná způsobilost v elektrotechnice dle NV 194/2022 Sb.",
     ref: "EVV/050/2024",
-    scope:
-      "Samostatná činnost i řízení činnosti na zařízeních do 1 kV AC a 1,5 kV DC v objektech tř. A včetně hromosvodů.",
-    valid: "Platnost do 12. 3. 2027",
+    valid: "do 12. 3. 2027",
     doc: "odborna-zpusobilost-evv",
   },
   {
-    key: "koncese",
+    issuer: "Jablotron a.s.",
+    title: "Certifikát JABLOTRON 100+ a Mercury",
+    ref: "Akademie Jablotron",
+    valid: "vystaveno 14. 6. 2025",
+    doc: "jablotron-100-mercury",
+  },
+  {
     issuer: "Městský úřad Benešov",
-    title: "Koncese k ochraně majetku a osob",
+    title: "Koncese Poskytování technických služeb k ochraně majetku a osob",
     ref: "ŽÚ/342/2020",
-    scope:
-      "Koncesovaná živnost Poskytování technických služeb k ochraně majetku a osob, na dobu neurčitou.",
-    valid: "Udělena 21. 1. 2020",
+    valid: "na dobu neurčitou",
     doc: "koncese-rozhodnuti-1",
   },
 ];
@@ -69,191 +112,135 @@ export const credentials = [
 export const certificates = [
   {
     file: "ticr-osvedceni-1",
-    title: "Osvědčení TIČR k revizím vyhrazených el. zařízení",
-    meta: "Technická inspekce ČR, ev. č. 5098/25/R-EZ-E2A, platnost do 24. 6. 2030",
+    title: "Osvědčení k provádění revizí vyhrazených elektrických zařízení",
+    issuer: "Technická inspekce ČR",
+    ref: "5098/25/R-EZ-E2A",
+    valid: "platnost do 24. 6. 2030",
     alt: "Osvědčení Technické inspekce České republiky k provádění revizí vyhrazených elektrických zařízení v rozsahu E2A.",
   },
   {
     file: "ticr-osvedceni-2",
-    title: "Příloha k osvědčení TIČR, rozsah E2A",
-    meta: "Technická inspekce ČR, vymezení rozsahu činností",
+    title: "Příloha k osvědčení, vymezení rozsahu E2A",
+    issuer: "Technická inspekce ČR",
+    ref: "5098/25/R-EZ-E2A",
+    valid: "příloha 2/2",
     alt: "Příloha osvědčení TIČR vymezující rozsah E2A: zařízení do 1 kV AC nebo 1,5 kV DC včetně hromosvodů.",
   },
   {
-    file: "jablotron-100-mercury",
-    title: "Certifikát JABLOTRON 100+ a Mercury",
-    meta: "Jablotron a.s., Akademie Jablotron, 14. 6. 2025",
-    alt: "Certifikát firmy Jablotron a.s. o absolvování odborného kurzu JABLOTRON 100+ a Mercury.",
-  },
-  {
     file: "odborna-zpusobilost-evv",
-    title: "Doklad o složení zkoušky odborné způsobilosti",
-    meta: "Elektroservis VV s.r.o., EVV/050/2024, platnost do 12. 3. 2027",
+    title: "Doklad o složení zkoušky odborné způsobilosti v elektrotechnice",
+    issuer: "Elektroservis VV s.r.o.",
+    ref: "EVV/050/2024",
+    valid: "platnost do 12. 3. 2027",
     alt: "Doklad o složení zkoušky z odborné způsobilosti k výkonu činností v elektrotechnice dle NV 194/2022 Sb.",
   },
   {
+    file: "jablotron-100-mercury",
+    title: "Certifikát o absolvování kurzu JABLOTRON 100+ a Mercury",
+    issuer: "Jablotron a.s.",
+    ref: "Akademie Jablotron",
+    valid: "vystaveno 14. 6. 2025",
+    alt: "Certifikát firmy Jablotron a.s. o absolvování odborného kurzu JABLOTRON 100+ a Mercury.",
+  },
+  {
     file: "dehn-csn-en-62305",
-    title: "Osvědčení Ochrana před bleskem dle ČSN EN 62305",
-    meta: "DEHN + SÖHNE a LUMA Plus, Chomutov, 19. 1. 2010",
+    title: "Osvědčení Ochrana před bleskem podle ČSN EN 62305",
+    issuer: "DEHN + SÖHNE a LUMA Plus",
+    ref: "Chomutov",
+    valid: "19. 1. 2010",
     alt: "Osvědčení o absolvování praktického školení Ochrana před bleskem podle normy ČSN EN 62305.",
   },
   {
     file: "lpe-elektroinstalacni-pristroje",
-    title: "Osvědčení k moderním elektroinstalačním přístrojům",
-    meta: "LPE s.r.o., č. 351-2020/LP, 12. 2. 2020",
+    title: "Osvědčení Praktické používání moderních elektroinstalačních přístrojů",
+    issuer: "LPE s.r.o.",
+    ref: "351-2020/LP",
+    valid: "12. 2. 2020",
     alt: "Osvědčení vzdělávací agentury LPE o školení k proudovým chráničům, obloukovým ochranám AFDD a spínacím přístrojům.",
   },
   {
     file: "koncese-rozhodnuti-1",
-    title: "Rozhodnutí o udělení koncese, strana 1",
-    meta: "Městský úřad Benešov, ŽÚ/342/2020, 21. 1. 2020",
+    title: "Rozhodnutí o udělení koncese k ochraně majetku a osob",
+    issuer: "Městský úřad Benešov",
+    ref: "ŽÚ/342/2020",
+    valid: "21. 1. 2020, strana 1",
     alt: "Rozhodnutí Městského úřadu Benešov o udělení koncese na poskytování technických služeb k ochraně majetku a osob.",
   },
   {
     file: "koncese-rozhodnuti-2",
-    title: "Rozhodnutí o udělení koncese, strana 2",
-    meta: "Městský úřad Benešov, koncese na dobu neurčitou",
+    title: "Rozhodnutí o udělení koncese, odůvodnění",
+    issuer: "Městský úřad Benešov",
+    ref: "ŽÚ/342/2020",
+    valid: "21. 1. 2020, strana 2",
     alt: "Druhá strana rozhodnutí o koncesi s odůvodněním a podpisem vedoucí obecního živnostenského úřadu.",
   },
   {
     file: "vypis-zr-1",
-    title: "Výpis z živnostenského rejstříku, strana 1",
-    meta: "Montáž, opravy, revize a zkoušky elektrických zařízení od 9. 2. 1995",
+    title: "Výpis z živnostenského rejstříku",
+    issuer: "Městský úřad Benešov",
+    ref: "ID RZP 2468415",
+    valid: "oprávnění od 9. 2. 1995",
     alt: "Výpis z živnostenského rejstříku se čtyřmi živnostenskými oprávněními, první vzniklo 9. 2. 1995.",
   },
   {
     file: "vypis-zr-2",
-    title: "Výpis z živnostenského rejstříku, strana 2",
-    meta: "Poskytování technických služeb k ochraně majetku a osob",
+    title: "Výpis z živnostenského rejstříku, pokračování",
+    issuer: "Městský úřad Benešov",
+    ref: "ID RZP 2468415",
+    valid: "strana 2",
     alt: "Druhá strana výpisu z živnostenského rejstříku s oprávněním k ochraně majetku a osob.",
   },
 ];
 
-export type ServiceKey =
-  | "plugs"
-  | "lightning"
-  | "clipboard"
-  | "shield"
-  | "thermometer";
+export const referenceTypes = [
+  "Veřejné stavby",
+  "Průmysl a logistika",
+  "Obchod a provozovny",
+  "Bydlení",
+  "Hotely a penziony",
+] as const;
 
-export const services: {
-  key: string;
-  icon: ServiceKey;
-  title: string;
-  lead: string;
-  items: string[];
-  wide: boolean;
+export type ReferenceType = (typeof referenceTypes)[number];
+
+/** 25 realizací z původní stránky Reference, rozpadlých na objekt, místo a typ. */
+export const references: {
+  name: string;
+  place: string;
+  type: ReferenceType;
 }[] = [
+  { name: "Jídelna ZŠ", place: "Divišov", type: "Veřejné stavby" },
+  { name: "Rekonstrukce sokolovny", place: "Divišov", type: "Veřejné stavby" },
+  { name: "Rekonstrukce budovy Kaleidoskop", place: "Solenice", type: "Veřejné stavby" },
+  { name: "Rozšíření veřejného osvětlení", place: "Drahňovice", type: "Veřejné stavby" },
+  { name: "XPO Supply Chain CZ s.r.o., LC Měchnov", place: "Měchnov", type: "Průmysl a logistika" },
+  { name: "Skladová hala ED plošiny s.r.o.", place: "Divišov", type: "Průmysl a logistika" },
+  { name: "Výrobní hala KADATEC s.r.o.", place: "Zdislavice", type: "Průmysl a logistika" },
+  { name: "Servisní hala EICHLER BUS s.r.o.", place: "Divišov", type: "Průmysl a logistika" },
+  { name: "Truhlářská dílna Interier Miriam s.r.o.", place: "Divišov", type: "Průmysl a logistika" },
   {
-    key: "elektroinstalace",
-    icon: "plugs",
-    title: "Elektroinstalace",
-    lead: "Silnoproud i slaboproud od přípojky až po osazený rozvaděč.",
-    items: [
-      "elektroinstalace RD, BD a průmyslových objektů",
-      "realizace nových a úprava stávajících odběrných míst",
-      "elektrické přípojky NN",
-      "montáž a údržba veřejného osvětlení",
-    ],
-    wide: true,
+    name: "Fotovoltaická elektrárna Václav Hanuš",
+    place: "Divišov",
+    type: "Průmysl a logistika",
   },
+  { name: "Prodejna Honda Galerie Butovice", place: "Praha", type: "Obchod a provozovny" },
+  { name: "Prodejna Vancl Sport", place: "Praha, Barrandov", type: "Obchod a provozovny" },
   {
-    key: "hromosvody",
-    icon: "lightning",
-    title: "Hromosvody",
-    lead: "Ochrana před bleskem podle ČSN EN 62305, od montáže po revizi.",
-    items: [
-      "montáž hromosvodů",
-      "jímací soustavy, svody a zemniče",
-      "opravy a doplnění stávající ochrany",
-      "revize hromosvodů",
-    ],
-    wide: true,
+    name: "Prodejny Antonínovo pekařství",
+    place: "Praha, Vinohrady a Vršovice",
+    type: "Obchod a provozovny",
   },
-  {
-    key: "revize",
-    icon: "clipboard",
-    title: "Revize",
-    lead: "Výchozí i periodické revize s osvědčením TIČR v rozsahu E2A.",
-    items: [
-      "výchozí a periodické revize",
-      "zařízení do 1 kV AC a 1,5 kV DC",
-      "revizní zprávy ke kolaudaci a pro pojišťovnu",
-    ],
-    wide: false,
-  },
-  {
-    key: "zabezpeceni",
-    icon: "shield",
-    title: "Zabezpečovací systémy",
-    lead: "Certifikovaná montáž systémů Jablotron 100+ a Mercury.",
-    items: [
-      "instalace zabezpečovacích systémů Jablotron",
-      "rozšíření a servis stávajících systémů",
-      "koncese k ochraně majetku a osob",
-    ],
-    wide: false,
-  },
-  {
-    key: "vytapeni",
-    icon: "thermometer",
-    title: "Elektrické vytápění",
-    lead: "Přímotopy, kotle i topné kabely včetně ochrany okapů.",
-    items: [
-      "přímotopy, elektrické kotle, akumulační kamna",
-      "topné kabely a podlahové topení",
-      "ochrana okapů, potrubí a venkovních ploch",
-    ],
-    wide: false,
-  },
-];
-
-export const referenceGroups = [
-  {
-    title: "Veřejné a občanské stavby",
-    items: [
-      "jídelna ZŠ Divišov",
-      "fitness centrum Divišov",
-      "rekonstrukce sokolovny v Divišově",
-      "rekonstrukce budovy Kaleidoskop Solenice",
-      "rozšíření veřejného osvětlení Drahňovice",
-    ],
-  },
-  {
-    title: "Průmysl a logistika",
-    items: [
-      "XPO Supply Chain CZ s.r.o., LC Měchnov",
-      "skladová hala ED plošiny s.r.o. Divišov",
-      "výrobní hala KADATEC s.r.o. Zdislavice",
-      "servisní hala EICHLER BUS s.r.o. Divišov",
-      "truhlářská dílna Interier Miriam s.r.o. Divišov",
-      "fotovoltaická elektrárna Václav Hanuš Divišov",
-    ],
-  },
-  {
-    title: "Obchod a provozovny",
-    items: [
-      "prodejna Honda Galerie Butovice Praha",
-      "prodejna Vancl Sport Praha Barrandov",
-      "prodejny Antonínovo pekařství Praha, Vinohrady a Vršovice",
-      "provozovna firmy Šenk s.r.o. Tatouňovice",
-      "provozovna FRAM s.r.o.",
-      "DATA SYSTEM SOLUTIONS s.r.o. Čerčany",
-      "herny DOMINO",
-    ],
-  },
-  {
-    title: "Bydlení, hotely a penziony",
-    items: [
-      "rekonstrukce hotelu HEINZ Dobříš",
-      "Penzion Hulín Sedlčany",
-      "penzion Všetice",
-      "rekonstrukce vily Mgr. Martin Mašek Praha Barrandov",
-      "RD Ing. Pavel Janovský Čerčany",
-      "RD Ing. Libor Truhelka",
-      "RD MUDr. František Rousek",
-    ],
-  },
+  { name: "Fitness centrum", place: "Divišov", type: "Obchod a provozovny" },
+  { name: "Provozovna Šenk s.r.o.", place: "Tatouňovice", type: "Obchod a provozovny" },
+  { name: "Provozovna FRAM s.r.o.", place: "", type: "Obchod a provozovny" },
+  { name: "DATA SYSTEM SOLUTIONS s.r.o.", place: "Čerčany", type: "Obchod a provozovny" },
+  { name: "Herny DOMINO", place: "", type: "Obchod a provozovny" },
+  { name: "Rekonstrukce vily Mgr. Martin Mašek", place: "Praha, Barrandov", type: "Bydlení" },
+  { name: "RD Ing. Pavel Janovský", place: "Čerčany", type: "Bydlení" },
+  { name: "RD Ing. Libor Truhelka", place: "", type: "Bydlení" },
+  { name: "RD MUDr. František Rousek", place: "", type: "Bydlení" },
+  { name: "Rekonstrukce hotelu HEINZ", place: "Dobříš", type: "Hotely a penziony" },
+  { name: "Penzion Hulín", place: "Sedlčany", type: "Hotely a penziony" },
+  { name: "Penzion Všetice", place: "Všetice", type: "Hotely a penziony" },
 ];
 
 /** Popisky vycházejí z toho, co je na fotografii skutečně vidět. */
@@ -263,7 +250,14 @@ export const gallery = [
     w: 1237,
     h: 1280,
     alt: "Osazený hlavní rozvaděč s bezpečnostním značením a drátěnými kabelovými žlaby nad ním.",
-    caption: "Hlavní rozvaděč a kabelové trasy",
+    caption: "Hlavní rozvaděč, dokončená montáž",
+  },
+  {
+    file: "hala-02",
+    w: 960,
+    h: 1280,
+    alt: "Hala s betonovými stěnami, lištovými svítidly na stropě a povrchovými kabelovými trasami vedenými k rozvodům.",
+    caption: "Osvětlení a kabelové trasy v hale",
   },
   {
     file: "jidelna-zs-01",
@@ -273,18 +267,25 @@ export const gallery = [
     caption: "Jídelna ZŠ Divišov",
   },
   {
-    file: "hala-01",
-    w: 1280,
-    h: 960,
-    alt: "Hala s betonovým stropem, lineárními svítidly, vzduchotechnikou a označením nouzového východu.",
-    caption: "Hala s lineárním osvětlením",
+    file: "jidelna-zs-03",
+    w: 1024,
+    h: 768,
+    alt: "Jídelna s dřevěnými trámy a bodovými svítidly v akustickém podhledu, v pozadí nástěnné hodiny.",
+    caption: "Jídelna ZŠ Divišov, pohled do sálu",
   },
   {
     file: "jidelna-zs-02",
     w: 1024,
     h: 768,
     alt: "Pohled do jídelny se dvěma řadami stolů a rovnoměrně rozmístěnými stropními svítidly.",
-    caption: "Jídelna ZŠ Divišov",
+    caption: "Jídelna ZŠ Divišov, rozmístění svítidel",
+  },
+  {
+    file: "hala-01",
+    w: 1280,
+    h: 960,
+    alt: "Hala s betonovým stropem, lineárními svítidly, vzduchotechnikou a označením nouzového východu.",
+    caption: "Hala s lineárním osvětlením",
   },
   {
     file: "hala-04",
@@ -294,32 +295,25 @@ export const gallery = [
     caption: "Hala, dokončené rozvody",
   },
   {
-    file: "jidelna-zs-03",
-    w: 1024,
-    h: 768,
-    alt: "Jídelna s dřevěnými trámy a bodovými svítidly v akustickém podhledu, v pozadí nástěnné hodiny.",
-    caption: "Jídelna ZŠ Divišov",
-  },
-  {
     file: "hala-03",
     w: 1280,
     h: 960,
     alt: "Interiér haly s červeně lakovanými ocelovými rámy prostupů a lineárním osvětlením na šedém stropě.",
-    caption: "Provozní hala",
+    caption: "Provozní hala s prostupy",
   },
   {
     file: "hygienicke-zazemi-01",
     w: 960,
     h: 1280,
     alt: "Dokončená sprcha s obkladem a skleněnou zástěnou v hygienickém zázemí provozovny.",
-    caption: "Hygienické zázemí",
+    caption: "Hygienické zázemí provozovny",
   },
   {
     file: "hygienicke-zazemi-02",
     w: 1280,
     h: 960,
     alt: "Předsíň hygienického zázemí s otevřenými dveřmi do WC a průhledem do haly.",
-    caption: "Hygienické zázemí",
+    caption: "Hygienické zázemí, předsíň",
   },
   {
     file: "hotel-01",
@@ -327,5 +321,29 @@ export const gallery = [
     h: 290,
     alt: "Hotel s restaurací, zahradou a venkovním bazénem, jeden z objektů, kde firma pracovala.",
     caption: "Hotel s restaurací",
+  },
+];
+
+/** Milníky pro stránku O nás. Všechny jsou z doložených dokumentů. */
+export const milestones = [
+  {
+    year: "1995",
+    text: "Vzniká živnostenské oprávnění pro montáž, opravy, revize a zkoušky elektrických zařízení, 9. února.",
+  },
+  {
+    year: "2010",
+    text: "Praktické školení Ochrana před bleskem podle ČSN EN 62305 u firem DEHN + SÖHNE a LUMA Plus.",
+  },
+  {
+    year: "2020",
+    text: "Školení k proudovým chráničům a obloukovým ochranám AFDD. V lednu udělena koncese k ochraně majetku a osob.",
+  },
+  {
+    year: "2024",
+    text: "Zkouška odborné způsobilosti v elektrotechnice podle NV 194/2022 Sb., pro samostatnou činnost i řízení činnosti.",
+  },
+  {
+    year: "2025",
+    text: "Certifikát JABLOTRON 100+ a Mercury. Osvědčení Technické inspekce ČR k revizím v rozsahu E2A s platností do roku 2030.",
   },
 ];

@@ -3,7 +3,6 @@
 import * as React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import Image from "next/image";
-import { CaretLeft, CaretRight, X } from "@phosphor-icons/react/dist/ssr";
 import { cn } from "@/lib/utils";
 
 export type LightboxItem = {
@@ -17,7 +16,6 @@ export type LightboxItem = {
 
 type LightboxProps = {
   items: LightboxItem[];
-  /** Index otevřené položky, null zavře dialog. */
   index: number | null;
   onIndexChange: (index: number | null) => void;
 };
@@ -52,28 +50,29 @@ export function Lightbox({ items, index, onIndexChange }: LightboxProps) {
       }}
     >
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-40 bg-ink-950/95 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
+        <Dialog.Overlay className="fixed inset-0 z-40 bg-ink/70" />
         <Dialog.Content
-          className="fixed inset-0 z-50 flex flex-col outline-none data-[state=open]:animate-in data-[state=open]:fade-in-0"
+          className="fixed inset-0 z-50 flex flex-col bg-paper outline-none"
           aria-describedby={undefined}
         >
           <Dialog.Title className="sr-only">
             {item ? item.title : "Náhled"}
           </Dialog.Title>
 
-          <div className="flex items-center justify-between border-b border-ink-600/70 px-4 py-3 sm:px-6">
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-steel-400">
+          <div className="flex h-16 shrink-0 items-center justify-between border-b border-line px-5 sm:px-8">
+            <p className="font-mono text-[12.5px] text-ink-500">
               {index !== null ? `${index + 1} / ${items.length}` : ""}
             </p>
-            <Dialog.Close
-              aria-label="Zavřít náhled"
-              className="flex h-9 w-9 items-center justify-center rounded border border-ink-600 text-steel-300 transition-colors hover:border-steel-400 hover:text-steel-100"
-            >
-              <X size={16} />
-            </Dialog.Close>
+            <div className="flex items-center gap-2">
+              <NavButton label="Předchozí" onClick={() => step(-1)} glyph="←" />
+              <NavButton label="Další" onClick={() => step(1)} glyph="→" />
+              <Dialog.Close className="ml-2 border border-line-strong px-3 py-1.5 text-[13px] text-ink transition-colors hover:border-ink">
+                Zavřít
+              </Dialog.Close>
+            </div>
           </div>
 
-          <div className="relative flex min-h-0 flex-1 items-center justify-center px-3 py-4 sm:px-16">
+          <div className="flex min-h-0 flex-1 items-center justify-center p-4 sm:p-8">
             {item ? (
               <Image
                 key={item.src}
@@ -82,21 +81,16 @@ export function Lightbox({ items, index, onIndexChange }: LightboxProps) {
                 width={item.w}
                 height={item.h}
                 sizes="100vw"
-                className="max-h-full w-auto max-w-full object-contain"
+                className="max-h-full w-auto max-w-full border border-line object-contain"
                 priority
               />
             ) : null}
-
-            <NavButton side="left" onClick={() => step(-1)} />
-            <NavButton side="right" onClick={() => step(1)} />
           </div>
 
-          <div className="border-t border-ink-600/70 px-4 py-4 sm:px-6">
-            <p className="font-display text-sm font-semibold uppercase tracking-[0.08em] text-steel-100">
-              {item?.title}
-            </p>
+          <div className="shrink-0 border-t border-line px-5 py-4 sm:px-8">
+            <p className="text-[14.5px] font-medium text-ink">{item?.title}</p>
             {item?.meta ? (
-              <p className="mt-1 font-mono text-xs text-steel-400">{item.meta}</p>
+              <p className="mt-1 font-mono text-[12.5px] text-ink-500">{item.meta}</p>
             ) : null}
           </div>
         </Dialog.Content>
@@ -106,23 +100,24 @@ export function Lightbox({ items, index, onIndexChange }: LightboxProps) {
 }
 
 function NavButton({
-  side,
+  label,
   onClick,
+  glyph,
 }: {
-  side: "left" | "right";
+  label: string;
   onClick: () => void;
+  glyph: string;
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
-      aria-label={side === "left" ? "Předchozí" : "Další"}
+      aria-label={label}
       className={cn(
-        "absolute top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded border border-ink-600 bg-ink-900/80 text-steel-300 transition-colors hover:border-steel-400 hover:text-steel-100",
-        side === "left" ? "left-2 sm:left-4" : "right-2 sm:right-4"
+        "flex h-8 w-8 items-center justify-center border border-line-strong text-[15px] text-ink transition-colors hover:border-ink"
       )}
     >
-      {side === "left" ? <CaretLeft size={18} /> : <CaretRight size={18} />}
+      <span aria-hidden>{glyph}</span>
     </button>
   );
 }

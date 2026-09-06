@@ -1,22 +1,17 @@
 import type { Metadata } from "next";
-import { Saira, Instrument_Sans, IBM_Plex_Mono } from "next/font/google";
+import { Golos_Text, Spline_Sans_Mono } from "next/font/google";
 import "./globals.css";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
 import { site } from "@/lib/site";
 
-const display = Saira({
-  subsets: ["latin", "latin-ext"],
-  weight: ["500", "600", "700"],
-  variable: "--font-display",
-  display: "swap",
-});
-
-const sans = Instrument_Sans({
+const sans = Golos_Text({
   subsets: ["latin", "latin-ext"],
   variable: "--font-sans",
   display: "swap",
 });
 
-const mono = IBM_Plex_Mono({
+const mono = Spline_Sans_Mono({
   subsets: ["latin", "latin-ext"],
   weight: ["400", "500"],
   variable: "--font-mono",
@@ -31,24 +26,11 @@ export const metadata: Metadata = {
   },
   description:
     "Silnoproudé a slaboproudé elektroinstalace, montáž hromosvodů, zabezpečovací systémy Jablotron a revize elektrických zařízení. Od roku 1995 ve Středočeském kraji a v Praze.",
-  keywords: [
-    "elektroinstalace",
-    "hromosvody",
-    "revize elektrických zařízení",
-    "zabezpečovací systémy Jablotron",
-    "elektrikář Divišov",
-    "Benešov",
-    "Středočeský kraj",
-  ],
   openGraph: {
     type: "website",
     locale: "cs_CZ",
-    title: "Miroslav Chobotský | Elektroinstalace, hromosvody a revize",
-    description:
-      "Elektroinstalace, hromosvody, revize a zabezpečovací systémy Jablotron. Od roku 1995 ve Středočeském kraji a v Praze.",
     siteName: site.name,
   },
-  alternates: { canonical: "/" },
 };
 
 const schema = {
@@ -68,12 +50,6 @@ const schema = {
     addressCountry: "CZ",
   },
   areaServed: ["Středočeský kraj", "Praha"],
-  knowsAbout: [
-    "elektroinstalace",
-    "hromosvody",
-    "revize vyhrazených elektrických zařízení",
-    "zabezpečovací systémy Jablotron",
-  ],
 };
 
 export default function RootLayout({
@@ -82,11 +58,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="cs" className="dark">
-      <body
-        className={`${display.variable} ${sans.variable} ${mono.variable} min-h-[100dvh]`}
-      >
-        {children}
+    <html lang="cs">
+      <body className={`${sans.variable} ${mono.variable} flex min-h-[100dvh] flex-col`}>
+        <SiteHeader />
+        <div className="flex-1">{children}</div>
+        <SiteFooter />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
