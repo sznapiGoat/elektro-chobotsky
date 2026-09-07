@@ -59,6 +59,8 @@ const schema = {
     addressLocality: "Divišov",
     addressCountry: "CZ",
   },
+  url: "https://chobotsky-elektro.cz",
+  hasMap: site.googleProfile,
   areaServed: [
     { "@type": "AdministrativeArea", name: "Středočeský kraj" },
     { "@type": "City", name: "Praha" },
@@ -67,7 +69,7 @@ const schema = {
     { "@type": "City", name: "Divišov" },
   ],
   image: "https://chobotsky-elektro.cz/og.jpg",
-  sameAs: ["https://chobotsky.webnode.cz"],
+  sameAs: [site.googleProfile, "https://chobotsky.webnode.cz"],
   knowsAbout: [
     "elektroinstalace",
     "hromosvody",
@@ -85,8 +87,16 @@ export default function RootLayout({
   return (
     <html lang="cs">
       <body className={`${sans.variable} ${mono.variable} flex min-h-[100dvh] flex-col`}>
+        <a
+          href="#obsah"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:border focus:border-ink focus:bg-paper focus:px-4 focus:py-2 focus:text-[14px] focus:text-ink"
+        >
+          Přeskočit na obsah
+        </a>
         <SiteHeader />
-        <div className="flex-1">{children}</div>
+        <main id="obsah" className="flex-1">
+          {children}
+        </main>
         <SiteFooter />
         <script
           type="application/ld+json"

@@ -51,7 +51,7 @@ export function SiteFooter() {
             Stránky
           </h2>
           <ul className="mt-4 space-y-2.5">
-            {pages.map((p) => (
+            {[...pages, { label: "Ochrana osobních údajů", href: "/ochrana-osobnich-udaju" }].map((p) => (
               <li key={p.href}>
                 <Link
                   href={p.href}
@@ -81,6 +81,14 @@ export function SiteFooter() {
             {site.email}
           </a>
           <p className="mt-4 text-[13.5px] text-ink-500">{site.area}</p>
+          <a
+            href={site.googleProfile}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-block text-[13.5px] text-ink-700 underline decoration-line-strong underline-offset-4 transition-colors hover:text-signal"
+          >
+            Profil na Google Maps
+          </a>
         </div>
       </div>
     </footer>

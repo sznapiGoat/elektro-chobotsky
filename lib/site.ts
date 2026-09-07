@@ -11,6 +11,20 @@ export const site = {
   dic: "CZ7310230598",
   area: "Středočeský kraj a Praha",
   areaIn: "ve Středočeském kraji a v Praze",
+  googleProfile:
+    "https://www.google.com/maps/search/?api=1&query=Miroslav%20Chobotsk%C3%BD%20-%20elektroinstalace&query_place_id=ChIJAecEO4p8DEcRrUNqb3PPThM",
+  /** Města, která firma uvádí ve svém profilu jako oblast, kam jezdí. */
+  towns: [
+    "Divišov",
+    "Benešov",
+    "Vlašim",
+    "Sázava",
+    "Čerčany",
+    "Chocerady",
+    "Týnec nad Sázavou",
+    "Votice",
+    "Praha",
+  ],
   about:
     "Firma byla založena v roce 1995. Předmětem podnikání jsou silnoproudé a slaboproudé elektroinstalace, instalace zabezpečovacích systémů Jablotron, montáž hromosvodů, výchozí a pravidelné revize el. zařízení. Působíme převážně ve Středočeském kraji a v Praze.",
 };
