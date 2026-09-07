@@ -26,11 +26,21 @@ export const metadata: Metadata = {
   },
   description:
     "Silnoproudé a slaboproudé elektroinstalace, montáž hromosvodů, zabezpečovací systémy Jablotron a revize elektrických zařízení. Od roku 1995 ve Středočeském kraji a v Praze.",
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "cs_CZ",
     siteName: site.name,
+    images: [
+      {
+        url: "/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Miroslav Chobotský, elektroinstalace, hromosvody a revize. Telefon 606 145 684.",
+      },
+    ],
   },
+  twitter: { card: "summary_large_image", images: ["/og.jpg"] },
 };
 
 const schema = {
@@ -49,7 +59,22 @@ const schema = {
     addressLocality: "Divišov",
     addressCountry: "CZ",
   },
-  areaServed: ["Středočeský kraj", "Praha"],
+  areaServed: [
+    { "@type": "AdministrativeArea", name: "Středočeský kraj" },
+    { "@type": "City", name: "Praha" },
+    { "@type": "City", name: "Benešov" },
+    { "@type": "City", name: "Vlašim" },
+    { "@type": "City", name: "Divišov" },
+  ],
+  image: "https://chobotsky-elektro.cz/og.jpg",
+  sameAs: ["https://chobotsky.webnode.cz"],
+  knowsAbout: [
+    "elektroinstalace",
+    "hromosvody",
+    "revize vyhrazených elektrických zařízení",
+    "zabezpečovací systémy Jablotron",
+    "elektrické vytápění",
+  ],
 };
 
 export default function RootLayout({

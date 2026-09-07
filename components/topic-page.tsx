@@ -10,6 +10,8 @@ function headingOf(block: Block) {
   return "heading" in block ? block.heading : undefined;
 }
 
+const BASE = "https://chobotsky-elektro.cz";
+
 export function TopicPage({ topic }: { topic: Topic }) {
   const field = fields.find((f) => f.slug === topic.field);
   const siblings = topicsFor(topic.field).filter((t) => t.slug !== topic.slug);
@@ -19,8 +21,32 @@ export function TopicPage({ topic }: { topic: Topic }) {
     .filter((h): h is string => Boolean(h))
     .map((h) => ({ id: slugify(h), label: h }));
 
+  const breadcrumbs = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Nabídka služeb", item: `${BASE}/nabidka-sluzeb` },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: field?.title ?? topic.field,
+        item: `${BASE}/${topic.field}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: topic.navTitle,
+        item: `${BASE}/${topic.field}/${topic.slug}`,
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
+      />
       <section className="border-b border-line">
         <div className="shell pb-12 pt-8 lg:pb-14">
           <p className="font-mono text-[11.5px] text-ink-500">

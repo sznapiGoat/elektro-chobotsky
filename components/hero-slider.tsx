@@ -31,6 +31,19 @@ export function HeroSlider() {
   const go = (dir: 1 | -1) =>
     setIndex((i) => (i + dir + heroSlides.length) % heroSlides.length);
 
+  // Stahují se jen snímky, které uživatel viděl, plus jeden dopředu.
+  // Bez toho si první obrazovka vezme všech pět fotografií naráz.
+  const [loaded, setLoaded] = React.useState<number[]>([0, 1]);
+
+  React.useEffect(() => {
+    const next = (index + 1) % heroSlides.length;
+    setLoaded((prev) =>
+      prev.includes(index) && prev.includes(next)
+        ? prev
+        : Array.from(new Set([...prev, index, next]))
+    );
+  }, [index]);
+
   const tint = heroSlides[index].tint ?? FALLBACK_TINT;
 
   return (
@@ -55,14 +68,17 @@ export function HeroSlider() {
                 i === index ? "opacity-100" : "opacity-0"
               )}
             >
-              <Image
-                src={`/foto/${slide.file}.jpg`}
-                alt={i === index ? slide.alt : ""}
-                fill
-                priority={i === 0}
-                sizes="100vw"
-                className="object-cover"
-              />
+              {loaded.includes(i) ? (
+                <Image
+                  src={`/foto/${slide.file}.jpg`}
+                  alt={i === index ? slide.alt : ""}
+                  fill
+                  priority={i === 0}
+                  fetchPriority={i === 0 ? "high" : "low"}
+                  sizes="100vw"
+                  className="object-cover"
+                />
+              ) : null}
               {/* Zástin má barvu odvozenou z téhle fotografie. */}
               <div
                 className="absolute inset-0"

@@ -18,7 +18,11 @@ export function generateMetadata({
 }): Metadata {
   const topic = findTopic(FIELD, params.topic);
   if (!topic) return {};
-  return { title: topic.title, description: topic.description };
+  return {
+    title: topic.title,
+    description: topic.description,
+    alternates: { canonical: `/${FIELD}/${topic.slug}` },
+  };
 }
 
 export default function Page({ params }: { params: { topic: string } }) {
