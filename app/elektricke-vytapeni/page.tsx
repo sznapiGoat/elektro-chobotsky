@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ContactStrip } from "@/components/contact-strip";
 import { FieldFooterNav } from "@/components/field-footer-nav";
 import { FieldHead } from "@/components/field-head";
+import { PhotoBand } from "@/components/photo-band";
 
 export const metadata: Metadata = {
   title: "Elektrické vytápění a topné kabely",
@@ -108,6 +109,17 @@ export default function ElektrickeVytapeni() {
           nebo uchycení v okapu je proto potřeba vyřešit ještě před tím, než
           přijde pokrývač nebo obkladač.
         </p>
+      </section>
+
+      <section className="border-t border-line bg-paper-200 py-14">
+        <div className="shell pb-8">
+          <h2 className="text-[1.35rem] font-semibold tracking-[-0.015em] text-ink">
+            Z realizací
+          </h2>
+        </div>
+        <PhotoBand
+          files={["hygienicke-zazemi-01", "detail-sprcha", "hygienicke-zazemi-02"]}
+        />
       </section>
 
       <FieldFooterNav current="elektricke-vytapeni" />

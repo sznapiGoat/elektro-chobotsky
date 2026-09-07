@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ContactStrip } from "@/components/contact-strip";
-import { PhotoEssay } from "@/components/photo-essay";
-import { gallery } from "@/lib/site";
+import { PhotoGallery } from "@/components/photo-gallery";
+import { allPhotos } from "@/lib/photos";
 
 export const metadata: Metadata = {
   title: "Fotogalerie",
@@ -19,18 +19,19 @@ export default function Fotogalerie() {
               Fotogalerie
             </h1>
             <p className="font-mono text-[13px] text-ink-500">
-              {gallery.length} fotografií
+              {allPhotos.length} fotografií
             </p>
           </div>
           <p className="mt-6 max-w-measure text-[16px] leading-[1.75] text-ink-700">
-            Snímky z dokončených instalací. Kliknutím se fotografie otevře
-            v plné velikosti, mezi snímky se dá přecházet klávesami.
+            Snímky z dokončených instalací, rozdělené podle typu objektu.
+            Kliknutím se fotografie otevře v plné velikosti, mezi snímky se dá
+            přecházet klávesami.
           </p>
         </div>
       </section>
 
       <section className="shell py-12 lg:py-16">
-        <PhotoEssay />
+        <PhotoGallery />
       </section>
 
       <ContactStrip question="Chystáte podobnou stavbu? Zavolejte a projdeme rozsah." />

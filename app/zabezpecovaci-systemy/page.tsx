@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ContactStrip } from "@/components/contact-strip";
 import { FieldFooterNav } from "@/components/field-footer-nav";
 import { FieldHead } from "@/components/field-head";
+import { PhotoBand } from "@/components/photo-band";
 
 export const metadata: Metadata = {
   title: "Zabezpečovací systémy Jablotron",
@@ -94,6 +95,15 @@ export default function ZabezpecovaciSystemy() {
           </div>
         </div>
       </div>
+
+      <section className="border-t border-line bg-paper-200 py-14">
+        <div className="shell pb-8">
+          <h2 className="text-[1.35rem] font-semibold tracking-[-0.015em] text-ink">
+            Objekty, kde jsme dělali slaboproud
+          </h2>
+        </div>
+        <PhotoBand files={["prodejna-ulice", "bowling-herna", "rozvadece-provoz"]} />
+      </section>
 
       <FieldFooterNav current="zabezpecovaci-systemy" />
       <ContactStrip question="Chcete zabezpečit dům nebo provozovnu? Zavolejte a projdeme dispozici." />

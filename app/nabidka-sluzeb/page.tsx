@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ContactStrip } from "@/components/contact-strip";
+import { PhotoBand } from "@/components/photo-band";
 import { fields, originalServices, site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -89,6 +90,12 @@ export default function NabidkaSluzeb() {
           </div>
         </div>
       </div>
+
+      <section className="border-t border-line bg-paper-200 py-14">
+        <PhotoBand
+          files={["rozvadec-jistice", "hala-03", "pekarstvi-pult"]}
+        />
+      </section>
 
       <ContactStrip question="Nevíte, do kterého oboru vaše zakázka patří? Zavolejte, poradíme." />
     </>

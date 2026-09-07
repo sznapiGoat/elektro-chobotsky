@@ -347,3 +347,99 @@ export const milestones = [
     text: "Certifikát JABLOTRON 100+ a Mercury. Osvědčení Technické inspekce ČR k revizím v rozsahu E2A s platností do roku 2030.",
   },
 ];
+
+/** Snímky pro úvodní přehrávač na domovské stránce. */
+export const heroSlides = [
+  {
+    file: "hala-01",
+    w: 1280,
+    h: 960,
+    alt: "Hala s betonovým stropem, lineárními svítidly, vzduchotechnikou a označením nouzového východu.",
+    caption: "Osvětlení haly",
+    place: "Divišov",
+  },
+  {
+    file: "jidelna-zs-01",
+    w: 1024,
+    h: 730,
+    alt: "Školní jídelna s barevnými židlemi a kruhovými svítidly zapuštěnými do akustického podhledu.",
+    caption: "Jídelna ZŠ",
+    place: "Divišov",
+  },
+  {
+    file: "hala-03",
+    w: 1280,
+    h: 960,
+    alt: "Interiér haly s červeně lakovanými ocelovými rámy prostupů a lineárním osvětlením na šedém stropě.",
+    caption: "Provozní hala",
+    place: "Měchnov",
+  },
+  {
+    file: "hala-04",
+    w: 1280,
+    h: 960,
+    alt: "Hala s prosvětlenými okny, závěsnými svítidly a povrchově vedenou kabelovou trasou pod stropem.",
+    caption: "Kabelové trasy",
+    place: "Zdislavice",
+  },
+];
+
+/** Detailní výřezy z vlastních fotografií, použité jako doplňkové záběry. */
+export const details = [
+  {
+    file: "detail-stitky",
+    w: 340,
+    h: 320,
+    alt: "Bezpečnostní štítky na dveřích rozvaděče, upozornění na elektrické zařízení a označení hlavního vypínače.",
+    caption: "Značení rozvaděče",
+  },
+  {
+    file: "detail-prostup",
+    w: 500,
+    h: 700,
+    alt: "Červeně lakovaný ocelový rám prostupu v hale, vedle něj otopné těleso a označení nouzového východu.",
+    caption: "Prostup v hale",
+  },
+  {
+    file: "detail-jidelna-zidle",
+    w: 640,
+    h: 370,
+    alt: "Modré a oranžové židle u stolů ve školní jídelně.",
+    caption: "Jídelna po rekonstrukci",
+  },
+  {
+    file: "detail-svitidla",
+    w: 820,
+    h: 430,
+    alt: "Lineární svítidla a povrchová kabelová trasa na betonovém stropě haly, vedle vzduchotechnické potrubí.",
+    caption: "Svítidla a trasy pod stropem",
+  },
+  {
+    file: "detail-okna",
+    w: 600,
+    h: 540,
+    alt: "Prosvětlená okna v betonové stěně haly s otopnými tělesy a lištovým svítidlem.",
+    caption: "Hala, boční stěna",
+  },
+  {
+    file: "detail-tramy",
+    w: 680,
+    h: 380,
+    alt: "Dřevěné trámy a bodová svítidla v akustickém podhledu jídelny.",
+    caption: "Podhled s bodovými svítidly",
+  },
+  {
+    file: "detail-sprcha",
+    w: 460,
+    h: 490,
+    alt: "Sprchová baterie a skleněná zástěna v obloženém hygienickém zázemí.",
+    caption: "Hygienické zázemí",
+  },
+  {
+    file: "detail-hotel-bazen",
+    w: 580,
+    h: 180,
+    alt: "Venkovní bazén se zahradou před hotelem s restaurací.",
+    caption: "Hotel s restaurací",
+  },
+];

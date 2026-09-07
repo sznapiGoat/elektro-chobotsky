@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ContactStrip } from "@/components/contact-strip";
 import { FieldFooterNav } from "@/components/field-footer-nav";
 import { FieldHead } from "@/components/field-head";
+import { PhotoBand } from "@/components/photo-band";
 
 export const metadata: Metadata = {
   title: "Hromosvody",
@@ -118,6 +119,15 @@ export default function Hromosvody() {
           </div>
         </aside>
       </div>
+
+      <section className="border-t border-line bg-paper-200 py-14">
+        <div className="shell pb-8">
+          <h2 className="text-[1.35rem] font-semibold tracking-[-0.015em] text-ink">
+            Objekty, na kterých jsme pracovali
+          </h2>
+        </div>
+        <PhotoBand files={["hotel-ulice", "objekt-drevena-fasada", "areal-cesta"]} />
+      </section>
 
       <FieldFooterNav current="hromosvody" />
       <ContactStrip question="Potřebujete novou jímací soustavu nebo revizi stávající?" />

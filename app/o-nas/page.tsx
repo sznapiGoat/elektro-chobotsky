@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ContactStrip } from "@/components/contact-strip";
+import { PhotoBand } from "@/components/photo-band";
 import { milestones, site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -119,6 +120,12 @@ export default function ONas() {
           </figure>
         </div>
       </div>
+
+      <section className="border-t border-line bg-paper-200 py-14">
+        <PhotoBand
+          files={["sal-hvezdny-podhled", "jidelna-zs-03", "rozvadece-skrine"]}
+        />
+      </section>
 
       <ContactStrip question="Máte dotaz k rozsahu prací nebo k oprávněním?" />
     </>

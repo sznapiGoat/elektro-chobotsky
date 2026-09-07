@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ContactStrip } from "@/components/contact-strip";
 import { FieldFooterNav } from "@/components/field-footer-nav";
 import { FieldHead } from "@/components/field-head";
+import { PhotoBand } from "@/components/photo-band";
 
 export const metadata: Metadata = {
   title: "Revize elektrických zařízení",
@@ -119,6 +120,13 @@ export default function Revize() {
             Naskenované doklady
           </Link>
         </div>
+      </section>
+
+      <section className="py-12 lg:py-14">
+        <PhotoBand
+          files={["rozvadec-svorkovnice", "detail-stitky"]}
+          ratio="aspect-[4/3]"
+        />
       </section>
 
       {/* Obsah revize jako číslované články, s čísly v levém okraji. */}

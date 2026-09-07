@@ -22,7 +22,7 @@ npm run build && npm start
 
 | Adresa | Rozvržení |
 |---|---|
-| `/` | Titulní blok se čtyřmi poli, tvrzení, fotopás, obory jako obsah, tabulka oprávnění |
+| `/` | Fotografický hero s přepínáním snímků, obory jako obsah, pás z realizací, tabulka oprávnění |
 | `/nabidka-sluzeb` | Úplný výčet služeb z původního webu, vpravo rejstřík oborů |
 | `/elektroinstalace` | Postup zakázky jako svislá osa, fotopás, ukázky referencí |
 | `/hromosvody` | Úzký textový sloupec, poznámky k normám na okraji |
@@ -30,7 +30,7 @@ npm run build && npm start
 | `/zabezpecovaci-systemy` | Certifikát vlevo, komentář vpravo |
 | `/elektricke-vytapeni` | Srovnávací tabulka variant |
 | `/reference` | Filtrovatelná tabulka 25 objektů |
-| `/fotogalerie` | Fotoesej se střídajícími se pásy, lightbox |
+| `/fotogalerie` | 38 fotografií v pěti tématických skupinách, sloupcová sazba, lightbox |
 | `/certifikaty` | Registr dokladů s náhledy |
 | `/o-nas` | Text v úzkém sloupci, doložené milníky na okraji |
 | `/kontakt` | Telefon jako největší prvek stránky, formulář |
@@ -49,8 +49,22 @@ tedy není potřeba.
   ohraničení něco znamená.
 - Typografie: Golos Text pro nadpisy i text, Spline Sans Mono pro čísla,
   evidenční čísla a hlavičky tabulek.
-- Mono kapitálky jsou vyhrazené hlavičkám tabulek a popiskům titulního bloku,
-  nikde jinde.
+- Mono kapitálky jsou vyhrazené hlavičkám tabulek, nikde jinde. Mono bez
+  kapitálek nese telefon, evidenční čísla a letopočty.
+- Úvodní hero je fotografie s tmavým zástinem. Snímky se samy přepínají po
+  sedmi sekundách, uživatel je může přepnout kliknutím na popisek nebo
+  šipkami. Automatika se zastaví při hoveru, focusu a při prefers-reduced-motion.
+
+## Fotografie
+
+Všech 38 snímků je v `public/foto`. Třicet je stažených z původní galerie na
+Webnode, osm jsou detailní výřezy z těch samých snímků, vyrobené kvůli tomu,
+aby bylo z čeho stavět pásy uvnitř stránek.
+
+Metadata fotografií generuje `python scripts/gen-photos.py` do `lib/photos.ts`.
+Skript čte rozměry přímo ze souborů, popisky a alt texty jsou napsané ručně
+podle toho, co je na snímku skutečně vidět. Po přidání fotky doplňte záznam
+do `meta` a `groups` ve skriptu a spusťte ho znovu.
 
 ## Obsah
 
@@ -72,3 +86,7 @@ Data jsou v `lib/site.ts`:
 - zvážit odeslání formuláře přes API místo `mailto:`
 - nechat klientem zkontrolovat texty na stránkách oborů, popisy postupů
   vycházejí z jeho oprávnění, ne z jeho slov
+- ověřit u klienta přiřazení fotografií k objektům. Popisky říkají jen to, co
+  je na snímku vidět, místo je uvedené pouze tam, kde je zřejmé.
+- vyžádat si fotografie hromosvodů a topných kabelů, na tyto dva obory nemáme
+  ani jeden snímek

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ContactStrip } from "@/components/contact-strip";
 import { FieldFooterNav } from "@/components/field-footer-nav";
 import { FieldHead } from "@/components/field-head";
+import { PhotoBand } from "@/components/photo-band";
 import { Reveal } from "@/components/reveal";
 import { references } from "@/lib/site";
 
@@ -83,15 +84,15 @@ export default function Elektroinstalace() {
         <figure>
           <div className="relative h-[48vw] max-h-[460px] min-h-[200px] w-full border-y border-line">
             <Image
-              src="/foto/hala-04.jpg"
-              alt="Hala s prosvětlenými okny, závěsnými svítidly a povrchově vedenou kabelovou trasou pod stropem."
+              src="/foto/rozvadec-jistice.jpg"
+              alt="Otevřený rozvaděč s několika řadami jističů a proudových chráničů, číslovanými vodiči a svorkovnicemi."
               fill
               sizes="100vw"
               className="object-cover"
             />
           </div>
           <figcaption className="shell py-3 text-[12.5px] text-ink-500">
-            Povrchové kabelové trasy a osvětlení v hale.
+            Osazený rozvaděč s jističi, chrániči a číslovanými vodiči.
           </figcaption>
         </figure>
       </Reveal>
@@ -128,6 +129,19 @@ export default function Elektroinstalace() {
             </Link>
           </div>
         </div>
+      </section>
+
+      <section className="border-t border-line bg-paper-200 py-14">
+        <div className="shell pb-8">
+          <h2 className="text-[1.35rem] font-semibold tracking-[-0.015em] text-ink">
+            Z realizací
+          </h2>
+        </div>
+        <PhotoBand files={["hala-01", "truhlarska-dilna", "pekarstvi-pece"]} />
+        <PhotoBand
+          files={["rozvadece-skrine", "sklad-plosina", "detail-svitidla"]}
+          className="mt-3"
+        />
       </section>
 
       <FieldFooterNav current="elektroinstalace" />

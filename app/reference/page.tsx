@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ContactStrip } from "@/components/contact-strip";
+import { PhotoBand } from "@/components/photo-band";
 import { ReferenceTable } from "@/components/reference-table";
 import { references } from "@/lib/site";
 
@@ -36,6 +37,12 @@ export default function Reference() {
             .
           </p>
         </div>
+      </section>
+
+      <section className="border-b border-line bg-paper-200 py-12">
+        <PhotoBand
+          files={["jidelna-zs-01", "pekarstvi-prodejna", "truhlarska-dilna", "hotel-ulice"]}
+        />
       </section>
 
       <section className="shell py-12 lg:py-16">

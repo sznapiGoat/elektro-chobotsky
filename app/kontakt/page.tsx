@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/contact-form";
+import { PhotoBand } from "@/components/photo-band";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -67,6 +68,12 @@ export default function Kontakt() {
           </div>
         </div>
       </div>
+
+      <section className="border-t border-line bg-paper-200 py-12">
+        <PhotoBand
+          files={["pekarstvi-provoz", "hala-04", "detail-jidelna-zidle"]}
+        />
+      </section>
     </>
   );
 }
