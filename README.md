@@ -35,6 +35,11 @@ npm run build && npm start
 | `/o-nas` | Text v úzkém sloupci, doložené milníky na okraji |
 | `/kontakt` | Telefon jako největší prvek stránky, formulář |
 
+Nabídka služeb je v hlavičce rozbalovací. Najetím myší na položku se pod
+hlavičkou otevře panel s pěti obory a jejich podstránkami, u klávesnice se
+otevře fokusem a zavře klávesou Escape. Na mobilu jsou obory vypsané pod
+položkou v celoobrazovkovém menu.
+
 Každý obor má vlastní podstránky, celkem dvanáct, na adresách
 `/{obor}/{tema}`. Obsah je v `lib/topics.ts`, kde si každé téma vybírá
 skladbu bloků (text, výčet, kroky, tabulka, technické údaje, poznámka,

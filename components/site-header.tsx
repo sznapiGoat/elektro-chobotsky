@@ -3,29 +3,28 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useMotionValueEvent, useScroll } from "framer-motion";
-import { nav, site } from "@/lib/site";
+import { AnimatePresence, useMotionValueEvent, useScroll } from "framer-motion";
+import { ServicesMenu } from "@/components/services-menu";
+import { fields, nav, site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
-const fieldPaths = [
-  "/elektroinstalace",
-  "/hromosvody",
-  "/revize",
-  "/zabezpecovaci-systemy",
-  "/elektricke-vytapeni",
-];
+const fieldPaths = fields.map((f) => `/${f.slug}`);
 
 export function SiteHeader() {
   const [open, setOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
+  const [servicesOpen, setServicesOpen] = React.useState(false);
+  const closeTimer = React.useRef<number | null>(null);
   const pathname = usePathname();
 
   // Na domovské stránce hlavička leží na fotografii, dokud uživatel neodroluje.
+  // Při rozbalené nabídce se přepne na plnou, aby panel na něčem stál.
   const onHome = pathname === "/";
-  const overlay = onHome && !scrolled;
+  const overlay = onHome && !scrolled && !servicesOpen;
 
   React.useEffect(() => {
     setOpen(false);
+    setServicesOpen(false);
   }, [pathname]);
 
   const { scrollY } = useScroll();
@@ -45,9 +44,37 @@ export function SiteHeader() {
     };
   }, [open]);
 
+  React.useEffect(() => {
+    if (!servicesOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setServicesOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [servicesOpen]);
+
+  React.useEffect(
+    () => () => {
+      if (closeTimer.current) window.clearTimeout(closeTimer.current);
+    },
+    []
+  );
+
+  const openServices = () => {
+    if (closeTimer.current) window.clearTimeout(closeTimer.current);
+    setServicesOpen(true);
+  };
+
+  // Krátká prodleva, aby nabídka nezmizela při přejezdu přes mezeru.
+  const closeServices = () => {
+    if (closeTimer.current) window.clearTimeout(closeTimer.current);
+    closeTimer.current = window.setTimeout(() => setServicesOpen(false), 140);
+  };
+
   return (
     <>
       <header
+        onMouseLeave={closeServices}
         className={cn(
           "sticky top-0 z-30 border-b transition-colors duration-500 ease-out",
           overlay
@@ -78,29 +105,47 @@ export function SiteHeader() {
 
           <nav className="hidden items-center gap-6 lg:flex" aria-label="Hlavní navigace">
             {nav.map((item) => {
+              const isServices = item.href === "/nabidka-sluzeb";
               const active =
                 pathname === item.href ||
-                (item.href === "/nabidka-sluzeb" &&
-                  fieldPaths.some((f) => pathname.startsWith(f)));
+                (isServices && fieldPaths.some((f) => pathname.startsWith(f)));
               return (
                 <Link
                   key={item.href}
                   href={item.href}
+                  onMouseEnter={isServices ? openServices : undefined}
+                  onFocus={isServices ? openServices : closeServices}
+                  aria-expanded={isServices ? servicesOpen : undefined}
                   className={cn(
-                    "border-b py-1 text-[13.5px] transition-colors",
-                    active && "border-signal",
+                    "flex items-center gap-1.5 border-b py-1 text-[13.5px] transition-colors",
+                    (active || (isServices && servicesOpen)) && "border-signal",
                     overlay
                       ? cn(
                           "text-white/80 hover:text-white",
-                          active ? "text-white" : "border-transparent hover:border-white/40"
+                          active
+                            ? "text-white"
+                            : "border-transparent hover:border-white/40"
                         )
                       : cn(
                           "text-ink-700 hover:text-ink",
-                          active ? "text-ink" : "border-transparent hover:border-line-strong"
+                          active
+                            ? "text-ink"
+                            : "border-transparent hover:border-line-strong"
                         )
                   )}
                 >
                   {item.label}
+                  {isServices ? (
+                    <span
+                      aria-hidden
+                      className={cn(
+                        "font-mono text-[10px] leading-none transition-transform duration-300 ease-out",
+                        servicesOpen ? "rotate-180" : ""
+                      )}
+                    >
+                      &#9662;
+                    </span>
+                  ) : null}
                 </Link>
               );
             })}
@@ -130,6 +175,12 @@ export function SiteHeader() {
             </button>
           </div>
         </div>
+
+        <AnimatePresence>
+          {servicesOpen ? (
+            <ServicesMenu onNavigate={() => setServicesOpen(false)} />
+          ) : null}
+        </AnimatePresence>
       </header>
 
       {/* Mobilní navigace je samostatná fixed vrstva mimo hlavičku. */}
@@ -147,13 +198,28 @@ export function SiteHeader() {
           </div>
           <nav className="shell py-4" aria-label="Mobilní navigace">
             {nav.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="block border-b border-line py-4 text-xl font-semibold tracking-[-0.01em] text-ink"
-              >
-                {item.label}
-              </Link>
+              <div key={item.href}>
+                <Link
+                  href={item.href}
+                  className="block border-b border-line py-4 text-xl font-semibold tracking-[-0.01em] text-ink"
+                >
+                  {item.label}
+                </Link>
+                {item.href === "/nabidka-sluzeb" ? (
+                  <ul className="border-b border-line py-2">
+                    {fields.map((f) => (
+                      <li key={f.slug}>
+                        <Link
+                          href={`/${f.slug}`}
+                          className="block py-2.5 pl-4 text-[15px] text-ink-700"
+                        >
+                          {f.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+              </div>
             ))}
             <a
               href={site.phoneHref}
