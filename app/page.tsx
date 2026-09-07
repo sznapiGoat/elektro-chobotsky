@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { BoardAnnotated } from "@/components/board-annotated";
 import { ContactStrip } from "@/components/contact-strip";
+import { DataTable } from "@/components/data-table";
 import { HeroSlider } from "@/components/hero-slider";
 import { PhotoBand } from "@/components/photo-band";
 import { credentials, fields, references } from "@/lib/site";
@@ -93,40 +94,20 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="mt-8 overflow-x-auto">
-          <table className="w-full min-w-[42rem] border-collapse text-left">
-            <thead>
-              <tr className="border-b border-line-strong">
-                <th className="py-2.5 pr-6 font-mono text-[10.5px] font-normal uppercase tracking-[0.16em] text-ink-500">
-                  Vydal
-                </th>
-                <th className="py-2.5 pr-6 font-mono text-[10.5px] font-normal uppercase tracking-[0.16em] text-ink-500">
-                  Doklad
-                </th>
-                <th className="py-2.5 pr-6 font-mono text-[10.5px] font-normal uppercase tracking-[0.16em] text-ink-500">
-                  Číslo
-                </th>
-                <th className="py-2.5 font-mono text-[10.5px] font-normal uppercase tracking-[0.16em] text-ink-500">
-                  Platnost
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {credentials.map((c) => (
-                <tr key={c.ref} className="border-b border-line align-top">
-                  <td className="py-4 pr-6 text-[14px] text-ink-700">{c.issuer}</td>
-                  <td className="py-4 pr-6 text-[14px] font-medium text-ink">
-                    {c.title}
-                  </td>
-                  <td className="py-4 pr-6 font-mono text-[13px] text-ink-700">
-                    {c.ref}
-                  </td>
-                  <td className="py-4 font-mono text-[13px] text-ink-700">{c.valid}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <DataTable
+          className="mt-8"
+          head={["Doklad", "Vydal", "Číslo", "Platnost"]}
+          rows={credentials.map((c) => [
+            c.title,
+            c.issuer,
+            <span key="ref" className="font-mono text-[13px]">
+              {c.ref}
+            </span>,
+            <span key="valid" className="font-mono text-[13px]">
+              {c.valid}
+            </span>,
+          ])}
+        />
       </section>
 
       {/* Ukázka referencí prostým výčtem. */}

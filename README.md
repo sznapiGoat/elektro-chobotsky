@@ -33,7 +33,9 @@ npm run build && npm start
 | `/fotogalerie` | 38 fotografií v pěti tématických skupinách, sloupcová sazba, lightbox |
 | `/certifikaty` | Registr dokladů s náhledy |
 | `/o-nas` | Text v úzkém sloupci, doložené milníky na okraji |
+| `/cena` | Co cenu určuje, jak vypadá nabídka, na co si dát pozor, dotazy k ceně |
 | `/kontakt` | Telefon jako největší prvek stránky, formulář |
+| `/ochrana-osobnich-udaju` | Zpracování údajů z poptávky |
 
 Nabídka služeb je v hlavičce rozbalovací. Najetím myší na položku se pod
 hlavičkou otevře panel s pěti obory a jejich podstránkami, u klávesnice se
@@ -90,6 +92,33 @@ Data jsou v `lib/site.ts`:
 - `gallery` fotografie s alt texty popsanými podle skutečného obsahu snímků
 - `milestones` letopočty doložené dokumenty
 
+## Poptávkový formulář
+
+Formulář na `/kontakt` posílá data na `app/api/poptavka/route.ts`, odtud jdou
+e-mailem přes Resend. Potřebuje proměnné podle `.env.example`:
+
+```
+RESEND_API_KEY=...
+CONTACT_FROM=poptavka@vase-domena.cz   # doména musí být v Resendu ověřená
+CONTACT_TO=chobotskymiroslav@seznam.cz
+```
+
+Bez nich vrátí API 503 a formulář nabídne odeslání přes e-mailový klient
+uživatele, takže poptávka nikdy nezmizí do prázdna. Ochranu proti robotům
+řeší skryté pole a kontrola času vyplnění, ne captcha.
+
+## Mobil
+
+Rozvržení se kontroluje skriptem `node scripts/shots.mjs <port> mobile <cesty>`,
+který jede přes puppeteer-core na nainstalovaném Chrome, protože headless
+přepínač `--window-size` na Windows neumí jít pod 500 px. Skript vypíše výšku
+dokumentu, přetékající prvky a klikatelné cíle menší než 40 px.
+`scripts/nav-check.mjs` kontroluje, že navigace zůstává na jednom řádku.
+
+Tabulky se pod `sm` rozpadají do bloků komponentou `components/data-table.tsx`,
+vodorovné rolování tabulky je na telefonu k ničemu. Pásy fotek jsou na mobilu
+ve dvou sloupcích, obsah stránky u podstránek se na mobilu nezobrazuje.
+
 ## Co je potřeba doplnit před nasazením
 
 - ověřit u klienta, ke kterému objektu patří fotografie hotelu s bazénem
@@ -102,3 +131,9 @@ Data jsou v `lib/site.ts`:
   je na snímku vidět, místo je uvedené pouze tam, kde je zřejmé.
 - vyžádat si fotografie hromosvodů a topných kabelů, na tyto dva obory nemáme
   ani jeden snímek
+- doplnit na stránku Cena skutečné cenové rozsahy nebo alespoň sazbu za
+  hodinu. Stránka dnes vysvětluje, jak cena vzniká, ale žádné číslo neuvádí,
+  protože ho neznáme.
+- nastavit proměnné pro odesílání poptávek, jinak formulář jede na náhradní
+  režim přes e-mailového klienta
+- doplnit otevírací dobu do strukturovaných dat, až ji budeme znát

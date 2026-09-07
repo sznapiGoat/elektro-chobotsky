@@ -52,13 +52,22 @@ export function ServicesMenu({ onNavigate }: { onNavigate: () => void }) {
       </div>
 
       <div className="shell flex flex-wrap items-center justify-between gap-4 border-t border-line py-3.5">
-        <Link
-          href="/nabidka-sluzeb"
-          onClick={onNavigate}
-          className="text-[13.5px] text-ink underline decoration-line-strong underline-offset-4 transition-colors hover:decoration-signal"
-        >
-          Úplný výčet služeb na jedné stránce
-        </Link>
+        <span className="flex flex-wrap items-center gap-x-6 gap-y-2">
+          <Link
+            href="/nabidka-sluzeb"
+            onClick={onNavigate}
+            className="text-[13.5px] text-ink underline decoration-line-strong underline-offset-4 transition-colors hover:decoration-signal"
+          >
+            Úplný výčet služeb na jedné stránce
+          </Link>
+          <Link
+            href="/cena"
+            onClick={onNavigate}
+            className="text-[13.5px] text-ink underline decoration-line-strong underline-offset-4 transition-colors hover:decoration-signal"
+          >
+            Jak se tvoří cena
+          </Link>
+        </span>
         <span className="text-[13px] text-ink-500">
           Působíme {site.areaIn}
         </span>

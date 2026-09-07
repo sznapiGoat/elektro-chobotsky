@@ -169,7 +169,7 @@ export function HeroSlider() {
                       type="button"
                       onClick={() => setIndex(i)}
                       aria-current={i === index}
-                      className="group relative block pb-2 pt-1 text-left"
+                      className="group relative block pb-2.5 pt-3 text-left sm:pt-1"
                     >
                       <span
                         className={cn(
@@ -223,7 +223,7 @@ function ArrowButton({
       type="button"
       onClick={onClick}
       aria-label={label}
-      className="flex h-9 w-9 items-center justify-center border border-white/45 text-[15px] text-white transition-colors hover:border-white hover:bg-white/10"
+      className="flex h-11 w-11 items-center justify-center border border-white/45 text-[15px] text-white transition-colors hover:border-white hover:bg-white/10 sm:h-9 sm:w-9"
     >
       <span aria-hidden>{glyph}</span>
     </button>

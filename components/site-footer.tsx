@@ -37,7 +37,7 @@ export function SiteFooter() {
               <li key={f.slug}>
                 <Link
                   href={`/${f.slug}`}
-                  className="text-[13.5px] text-ink-700 transition-colors hover:text-signal"
+                  className="block py-1 text-[13.5px] text-ink-700 transition-colors hover:text-signal"
                 >
                   {f.title}
                 </Link>
@@ -55,7 +55,7 @@ export function SiteFooter() {
               <li key={p.href}>
                 <Link
                   href={p.href}
-                  className="text-[13.5px] text-ink-700 transition-colors hover:text-signal"
+                  className="block py-1 text-[13.5px] text-ink-700 transition-colors hover:text-signal"
                 >
                   {p.label}
                 </Link>

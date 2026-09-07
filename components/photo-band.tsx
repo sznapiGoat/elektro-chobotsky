@@ -17,14 +17,15 @@ export function PhotoBand({
   full?: boolean;
   className?: string;
 }) {
+  // Na mobilu dva sloupce, jinak by pás fotek zabral celou obrazovku na snímek.
   const cols =
     files.length === 1
       ? "grid-cols-1"
       : files.length === 2
-        ? "sm:grid-cols-2"
+        ? "grid-cols-2"
         : files.length === 4
           ? "grid-cols-2 lg:grid-cols-4"
-          : "sm:grid-cols-3";
+          : "grid-cols-2 sm:grid-cols-3";
 
   return (
     <div className={cn(full ? "" : "shell", className)}>
@@ -41,7 +42,7 @@ export function PhotoBand({
                   sizes={
                     files.length === 1
                       ? "(max-width: 1240px) 100vw, 1240px"
-                      : "(max-width: 640px) 92vw, 33vw"
+                      : "(max-width: 640px) 46vw, 33vw"
                   }
                   className="object-cover"
                 />

@@ -83,7 +83,7 @@ export function SiteHeader() {
         )}
       >
         <div className="shell flex h-16 items-center justify-between gap-4 lg:gap-8">
-          <Link href="/" className="flex items-baseline gap-3">
+          <Link href="/" className="-my-2 flex items-baseline gap-3 py-2">
             <span
               className={cn(
                 "text-[15px] font-semibold tracking-[-0.01em] transition-colors",
@@ -95,7 +95,7 @@ export function SiteHeader() {
             </span>
             <span
               className={cn(
-                "hidden text-[12px] transition-colors lg:block",
+                "hidden text-[12px] transition-colors xl:block",
                 overlay ? "text-white/70" : "text-ink-500"
               )}
             >
@@ -155,7 +155,7 @@ export function SiteHeader() {
             <a
               href={site.phoneHref}
               className={cn(
-                "font-mono text-[13.5px] transition-colors",
+                "-my-3 py-3 font-mono text-[13.5px] transition-colors",
                 overlay ? "text-white hover:text-white/70" : "text-ink hover:text-signal"
               )}
             >
@@ -165,7 +165,7 @@ export function SiteHeader() {
               type="button"
               onClick={() => setOpen(true)}
               className={cn(
-                "border px-3 py-1.5 text-[13px] transition-colors lg:hidden",
+                "border px-3.5 py-2.5 text-[13px] transition-colors lg:hidden",
                 overlay
                   ? "border-white/50 text-white hover:border-white"
                   : "border-line-strong text-ink hover:border-ink"

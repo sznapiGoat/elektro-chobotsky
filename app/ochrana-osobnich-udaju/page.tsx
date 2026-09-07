@@ -20,7 +20,7 @@ const blocks = [
     heading: "Jaké údaje a proč",
     paragraphs: [
       "Zpracováváme jen to, co nám sami napíšete do poptávky: jméno, telefon nebo e-mail a popis zakázky. Používáme to k jedinému účelu, tedy abychom vám mohli odpovědět a domluvit se na práci.",
-      "Formulář na stránce Kontakt nic neodesílá na náš server. Otevře váš e-mailový klient s předvyplněnou zprávou, kterou odesíláte vy sami ze své adresy. Zpráva tedy putuje přímo do naší e-mailové schránky.",
+      "Poptávka z formuláře na stránce Kontakt se odešle na server webu a odtud přeposílá e-mailem do naší schránky. Nikde se neukládá do databáze. Když odeslání selže, formulář nabídne odeslání přes váš e-mailový klient.",
     ],
   },
   {
@@ -82,8 +82,9 @@ export default function OchranaOsobnichUdaju() {
           ))}
 
           <p className="border-l-2 border-signal pl-5 text-[14.5px] leading-[1.7] text-ink-700">
-            Až formulář začne odesílat poptávky přes server, bude potřeba tento
-            text doplnit o zpracovatele a o dobu uložení na straně serveru.
+            K přeposlání poptávky používáme službu Resend. Zpráva u ní projde
+            jen tranzitem, neukládá se do žádného dalšího systému a nepoužívá
+            se k ničemu jinému než k odpovědi.
           </p>
 
           <Link

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ContactStrip } from "@/components/contact-strip";
+import { DataTable } from "@/components/data-table";
 import { FieldFooterNav } from "@/components/field-footer-nav";
 import { FieldHead } from "@/components/field-head";
 import { TopicList } from "@/components/topic-list";
@@ -69,43 +70,12 @@ export default function ElektrickeVytapeni() {
           příkon. Než něco navrhneme, podíváme se na rozvaděč.
         </p>
 
-        <div className="mt-10 overflow-x-auto">
-          <table className="w-full min-w-[46rem] border-collapse text-left">
-            <thead>
-              <tr className="border-b border-line-strong">
-                <th className="w-[22rem] py-2.5 pr-8 font-mono text-[10.5px] font-normal uppercase tracking-[0.16em] text-ink-500">
-                  Varianta
-                </th>
-                <th className="py-2.5 pr-8 font-mono text-[10.5px] font-normal uppercase tracking-[0.16em] text-ink-500">
-                  Kde se používá
-                </th>
-                <th className="py-2.5 font-mono text-[10.5px] font-normal uppercase tracking-[0.16em] text-ink-500">
-                  Co je potřeba zajistit
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {variants.map((v, i) => (
-                <tr
-                  key={v.name}
-                  className={`border-b border-line align-top ${
-                    i % 2 === 1 ? "bg-paper-200" : ""
-                  }`}
-                >
-                  <td className="py-4 pr-8 text-[15px] font-medium leading-snug text-ink">
-                    {v.name}
-                  </td>
-                  <td className="py-4 pr-8 text-[14.5px] leading-snug text-ink-700">
-                    {v.use}
-                  </td>
-                  <td className="py-4 text-[14.5px] leading-snug text-ink-700">
-                    {v.need}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <DataTable
+          className="mt-10"
+          minWidth="min-w-[44rem]"
+          head={["Varianta", "Kde se používá", "Co je potřeba zajistit"]}
+          rows={variants.map((v) => [v.name, v.use, v.need])}
+        />
 
         <p className="mt-10 max-w-[60ch] border-l-2 border-signal pl-5 text-[14.5px] leading-[1.7] text-ink-700">
           Topné kabely se pokládají jednou a na desítky let. Skladbu podlahy

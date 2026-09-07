@@ -73,6 +73,10 @@ export default function Kontakt() {
               &#8599;
             </span>
           </a>
+          <p className="mt-3 max-w-[42ch] text-[13px] leading-relaxed text-ink-500">
+            Když jsme pro vás pracovali a byli jste spokojení, hodnocení na
+            Google nám pomůže víc než cokoli jiného.
+          </p>
 
           <h2 className="mt-12 font-mono text-[10.5px] uppercase tracking-[0.16em] text-ink-500">
             Kam jezdíme
@@ -98,9 +102,9 @@ export default function Kontakt() {
             <ContactForm />
           </div>
           <p className="mt-4 max-w-[52ch] text-[12.5px] leading-relaxed text-ink-500">
-            Údaje z formuláře používáme jen k tomu, abychom vám odpověděli.
-            Web neměří návštěvnost ani neukládá cookies, podrobnosti jsou
-            v{" "}
+            Údaje z formuláře používáme jen k tomu, abychom vám odpověděli,
+            a nikam dál je nepředáváme. Web neměří návštěvnost ani neukládá
+            cookies, podrobnosti jsou v{" "}
             <Link
               href="/ochrana-osobnich-udaju"
               className="text-ink-700 underline decoration-line-strong underline-offset-4 transition-colors hover:decoration-signal"

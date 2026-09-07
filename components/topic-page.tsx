@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ContactStrip } from "@/components/contact-strip";
+import { DataTable } from "@/components/data-table";
 import { FaqList } from "@/components/faq-list";
 import { PhotoBand } from "@/components/photo-band";
 import { TopicIndex } from "@/components/topic-index";
@@ -99,7 +100,7 @@ export function TopicPage({ topic }: { topic: Topic }) {
       </section>
 
       <div className="shell grid gap-12 py-12 lg:grid-cols-12 lg:gap-14 lg:py-16">
-        <aside className="lg:col-span-3">
+        <aside className="hidden lg:col-span-3 lg:block">
           <div className="lg:sticky lg:top-24">
             <TopicIndex items={indexItems} />
           </div>
@@ -242,43 +243,12 @@ function BlockView({ block }: { block: Block }) {
     return (
       <section>
         <BlockHeading text={block.heading} />
-        <div className="mt-6 overflow-x-auto">
-          <table className="w-full min-w-[34rem] border-collapse text-left">
-            <thead>
-              <tr className="border-b border-line-strong">
-                {block.head.map((h) => (
-                  <th
-                    key={h}
-                    className="py-2.5 pr-8 font-mono text-[10.5px] font-normal uppercase tracking-[0.16em] text-ink-500"
-                  >
-                    {h}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {block.rows.map((row, i) => (
-                <tr
-                  key={row[0]}
-                  className={`border-b border-line align-top ${
-                    i % 2 === 1 ? "bg-paper-200" : ""
-                  }`}
-                >
-                  {row.map((cell, j) => (
-                    <td
-                      key={cell}
-                      className={`py-4 pr-8 text-[14.5px] leading-snug ${
-                        j === 0 ? "font-medium text-ink" : "text-ink-700"
-                      }`}
-                    >
-                      {cell}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <DataTable
+          className="mt-6"
+          minWidth="min-w-[32rem]"
+          head={block.head}
+          rows={block.rows}
+        />
       </section>
     );
   }

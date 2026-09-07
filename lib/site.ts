@@ -31,6 +31,7 @@ export const site = {
 
 export const nav = [
   { label: "Nabídka služeb", href: "/nabidka-sluzeb" },
+  { label: "Cena", href: "/cena" },
   { label: "Reference", href: "/reference" },
   { label: "Fotogalerie", href: "/fotogalerie" },
   { label: "Certifikáty", href: "/certifikaty" },

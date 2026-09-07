@@ -43,7 +43,7 @@ export function ReferenceTable() {
               onClick={() => setFilter(f)}
               aria-pressed={filter === f}
               className={cn(
-                "border px-3 py-1.5 text-[13px] transition-colors",
+                "border px-3 py-2.5 text-[13px] transition-colors sm:py-1.5",
                 filter === f
                   ? "border-ink bg-ink text-paper"
                   : "border-line-strong text-ink-700 hover:border-ink hover:text-ink"

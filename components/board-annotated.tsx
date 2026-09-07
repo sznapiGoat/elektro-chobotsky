@@ -41,7 +41,7 @@ export function BoardAnnotated() {
                   aria-pressed={isActive}
                   style={{ left: `${spot.x}%`, top: `${spot.y}%` }}
                   className={cn(
-                    "absolute -ml-3.5 -mt-3.5 flex h-7 w-7 items-center justify-center border font-mono text-[11px] outline-none transition-[background-color,border-color,transform] duration-300 ease-out",
+                    "absolute -ml-5 -mt-5 flex h-10 w-10 items-center justify-center border font-mono text-[12px] outline-none transition-[background-color,border-color,transform] duration-300 ease-out sm:-ml-3.5 sm:-mt-3.5 sm:h-7 sm:w-7 sm:text-[11px]",
                     isActive
                       ? "scale-110 border-white bg-signal text-white"
                       : "border-white/70 bg-ink/70 text-white hover:border-white hover:bg-ink"
