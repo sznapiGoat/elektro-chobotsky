@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """Vygeneruje lib/photos.ts. Rozměry se čtou přímo ze souborů."""
+import colorsys
 import io, os
 from PIL import Image
 
@@ -63,6 +64,22 @@ def dims(f):
         return im.size
 
 
+def tint(f):
+    """Tmavý odstín odvozený z fotografie. Drží její barvu, ale je dost tmavý,
+    aby na něm bílý text splnil kontrast."""
+    with Image.open(os.path.join(D, f + ".jpg")) as im:
+        small = im.convert("RGB").resize((48, 48))
+        px = list(small.getdata())
+    r = sum(p[0] for p in px) / len(px) / 255
+    g = sum(p[1] for p in px) / len(px) / 255
+    b = sum(p[2] for p in px) / len(px) / 255
+    h, s, v = colorsys.rgb_to_hsv(r, g, b)
+    s = min(s * 1.7, 0.46)
+    v = 0.26
+    r, g, b = colorsys.hsv_to_rgb(h, s, v)
+    return "%d %d %d" % (round(r * 255), round(g * 255), round(b * 255))
+
+
 missing = [f for f in meta if not os.path.exists(os.path.join(D, f + ".jpg"))]
 assert not missing, missing
 listed = set(f for _, fs in groups for f in fs)
@@ -77,11 +94,13 @@ L.append("  h: number;")
 L.append("  alt: string;")
 L.append("  caption: string;")
 L.append("  place?: string;")
+L.append("  /** Tmavý odstín z fotografie, pro zabarvení úvodní obrazovky. */")
+L.append("  tint?: string;")
 L.append("};")
 L.append("")
 
 
-def emit(files, indent):
+def emit(files, indent, with_tint=False):
     lines = []
     for f in files:
         w, h = dims(f)
@@ -94,13 +113,15 @@ def emit(files, indent):
         lines.append(indent + '  caption: "' + cap + '",')
         if place:
             lines.append(indent + '  place: "' + place + '",')
+        if with_tint:
+            lines.append(indent + '  tint: "' + tint(f) + '",')
         lines.append(indent + "},")
     return lines
 
 
 L.append("/** Snimky pro uvodni prehravac na domovske strance. */")
 L.append("export const heroSlides: Photo[] = [")
-L += emit(hero, "  ")
+L += emit(hero, "  ", with_tint=True)
 L.append("];")
 L.append("")
 L.append("export const photoGroups: { title: string; photos: Photo[] }[] = [")

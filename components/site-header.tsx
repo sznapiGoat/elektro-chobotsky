@@ -3,16 +3,40 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useMotionValueEvent, useScroll } from "framer-motion";
 import { nav, site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
+const fieldPaths = [
+  "/elektroinstalace",
+  "/hromosvody",
+  "/revize",
+  "/zabezpecovaci-systemy",
+  "/elektricke-vytapeni",
+];
+
 export function SiteHeader() {
   const [open, setOpen] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(false);
   const pathname = usePathname();
+
+  // Na domovské stránce hlavička leží na fotografii, dokud uživatel neodroluje.
+  const onHome = pathname === "/";
+  const overlay = onHome && !scrolled;
 
   React.useEffect(() => {
     setOpen(false);
   }, [pathname]);
+
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (value) => {
+    if (onHome) setScrolled(value > 80);
+  });
+
+  React.useEffect(() => {
+    setScrolled(onHome ? window.scrollY > 80 : true);
+  }, [onHome]);
 
   React.useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -23,14 +47,31 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="sticky top-0 z-30 border-b border-line bg-paper/95 backdrop-blur-[2px]">
+      <header
+        className={cn(
+          "sticky top-0 z-30 border-b transition-colors duration-500 ease-out",
+          overlay
+            ? "border-white/15 bg-transparent"
+            : "border-line bg-paper/95 backdrop-blur-[2px]"
+        )}
+      >
         <div className="shell flex h-16 items-center justify-between gap-4 lg:gap-8">
           <Link href="/" className="flex items-baseline gap-3">
-            <span className="text-[15px] font-semibold tracking-[-0.01em] text-ink">
+            <span
+              className={cn(
+                "text-[15px] font-semibold tracking-[-0.01em] transition-colors",
+                overlay ? "text-white" : "text-ink"
+              )}
+            >
               <span className="sm:hidden">{site.shortName}</span>
               <span className="hidden sm:inline">{site.name}</span>
             </span>
-            <span className="hidden text-[12px] text-ink-500 lg:block">
+            <span
+              className={cn(
+                "hidden text-[12px] transition-colors lg:block",
+                overlay ? "text-white/70" : "text-ink-500"
+              )}
+            >
               {site.trade}
             </span>
           </Link>
@@ -39,16 +80,24 @@ export function SiteHeader() {
             {nav.map((item) => {
               const active =
                 pathname === item.href ||
-                (item.href === "/nabidka-sluzeb" && pathname !== "/" && isFieldPath(pathname));
+                (item.href === "/nabidka-sluzeb" &&
+                  fieldPaths.some((f) => pathname.startsWith(f)));
               return (
                 <Link
                   key={item.href}
                   href={item.href}
                   className={cn(
                     "border-b py-1 text-[13.5px] transition-colors",
-                    active
-                      ? "border-signal text-ink"
-                      : "border-transparent text-ink-700 hover:border-line-strong hover:text-ink"
+                    active && "border-signal",
+                    overlay
+                      ? cn(
+                          "text-white/80 hover:text-white",
+                          active ? "text-white" : "border-transparent hover:border-white/40"
+                        )
+                      : cn(
+                          "text-ink-700 hover:text-ink",
+                          active ? "text-ink" : "border-transparent hover:border-line-strong"
+                        )
                   )}
                 >
                   {item.label}
@@ -60,14 +109,22 @@ export function SiteHeader() {
           <div className="flex items-center gap-4">
             <a
               href={site.phoneHref}
-              className="font-mono text-[13.5px] text-ink transition-colors hover:text-signal"
+              className={cn(
+                "font-mono text-[13.5px] transition-colors",
+                overlay ? "text-white hover:text-white/70" : "text-ink hover:text-signal"
+              )}
             >
               {site.phone}
             </a>
             <button
               type="button"
               onClick={() => setOpen(true)}
-              className="border border-line-strong px-3 py-1.5 text-[13px] text-ink transition-colors hover:border-ink lg:hidden"
+              className={cn(
+                "border px-3 py-1.5 text-[13px] transition-colors lg:hidden",
+                overlay
+                  ? "border-white/50 text-white hover:border-white"
+                  : "border-line-strong text-ink hover:border-ink"
+              )}
             >
               Menu
             </button>
@@ -75,7 +132,7 @@ export function SiteHeader() {
         </div>
       </header>
 
-      {/* Mobilní navigace je samostatná fixed vrstva mimo blurovanou hlavičku. */}
+      {/* Mobilní navigace je samostatná fixed vrstva mimo hlavičku. */}
       {open ? (
         <div className="fixed inset-0 z-40 overflow-y-auto bg-paper lg:hidden">
           <div className="shell flex h-16 items-center justify-between border-b border-line">
@@ -109,14 +166,4 @@ export function SiteHeader() {
       ) : null}
     </>
   );
-}
-
-function isFieldPath(pathname: string) {
-  return [
-    "/elektroinstalace",
-    "/hromosvody",
-    "/revize",
-    "/zabezpecovaci-systemy",
-    "/elektricke-vytapeni",
-  ].includes(pathname);
 }

@@ -6,6 +6,8 @@ export type Photo = {
   alt: string;
   caption: string;
   place?: string;
+  /** Tmavý odstín z fotografie, pro zabarvení úvodní obrazovky. */
+  tint?: string;
 };
 
 /** Snimky pro uvodni prehravac na domovske strance. */
@@ -16,6 +18,7 @@ export const heroSlides: Photo[] = [
     h: 1280,
     alt: "Otevřený rozvaděč s několika řadami jističů a proudových chráničů, číslovanými vodiči a svorkovnicemi.",
     caption: "Osazený rozvaděč s jističi a chrániči",
+    tint: "61 64 66",
   },
   {
     file: "pekarstvi-prodejna",
@@ -24,6 +27,7 @@ export const heroSlides: Photo[] = [
     alt: "Prodejna pekařství s bodovými svítidly na liště, závěsnými svítidly nad pecemi a vitrínou.",
     caption: "Prodejna pekařství",
     place: "Praha",
+    tint: "66 66 61",
   },
   {
     file: "hala-01",
@@ -31,6 +35,7 @@ export const heroSlides: Photo[] = [
     h: 960,
     alt: "Hala s betonovým stropem, lineárními svítidly, vzduchotechnikou a označením nouzového východu.",
     caption: "Hala s lineárním osvětlením",
+    tint: "66 60 53",
   },
   {
     file: "bowling-herna",
@@ -38,6 +43,7 @@ export const heroSlides: Photo[] = [
     h: 427,
     alt: "Bowlingová dráha s obrazovkami nad dráhami, dřevěným krovem a barevnými koulemi na podavači.",
     caption: "Bowlingová dráha a herna",
+    tint: "66 38 36",
   },
   {
     file: "sal-hvezdny-podhled",
@@ -45,6 +51,7 @@ export const heroSlides: Photo[] = [
     h: 960,
     alt: "Sál s parketami, jevištní oponou, černým perforovaným podhledem s desítkami bodových svítidel a jevištními reflektory na stěnách.",
     caption: "Sál s jevištním osvětlením",
+    tint: "66 55 44",
   },
 ];
 
