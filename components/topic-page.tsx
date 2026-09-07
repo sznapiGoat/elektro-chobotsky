@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { ContactStrip } from "@/components/contact-strip";
+import { FaqList } from "@/components/faq-list";
 import { PhotoBand } from "@/components/photo-band";
 import { TopicIndex } from "@/components/topic-index";
+import { faqFor } from "@/lib/faq";
 import { fields } from "@/lib/site";
 import { slugify } from "@/lib/slug";
 import { topicsFor, type Block, type Topic } from "@/lib/topics";
@@ -16,10 +18,15 @@ export function TopicPage({ topic }: { topic: Topic }) {
   const field = fields.find((f) => f.slug === topic.field);
   const siblings = topicsFor(topic.field).filter((t) => t.slug !== topic.slug);
 
-  const indexItems = topic.blocks
-    .map((b) => headingOf(b))
-    .filter((h): h is string => Boolean(h))
-    .map((h) => ({ id: slugify(h), label: h }));
+  const faq = faqFor(topic.field, topic.slug);
+
+  const indexItems = [
+    ...topic.blocks
+      .map((b) => headingOf(b))
+      .filter((h): h is string => Boolean(h))
+      .map((h) => ({ id: slugify(h), label: h })),
+    ...(faq.length > 0 ? [{ id: "caste-dotazy", label: "Časté dotazy" }] : []),
+  ];
 
   const breadcrumbs = {
     "@context": "https://schema.org",
@@ -41,12 +48,31 @@ export function TopicPage({ topic }: { topic: Topic }) {
     ],
   };
 
+  const faqSchema =
+    faq.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faq.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        }
+      : null;
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
       />
+      {faqSchema ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      ) : null}
       <section className="border-b border-line">
         <div className="shell pb-12 pt-8 lg:pb-14">
           <p className="font-mono text-[11.5px] text-ink-500">
@@ -84,6 +110,18 @@ export function TopicPage({ topic }: { topic: Topic }) {
             {topic.blocks.map((block, i) => (
               <BlockView key={i} block={block} />
             ))}
+
+            {faq.length > 0 ? (
+              <section>
+                <h2
+                  id="caste-dotazy"
+                  className="scroll-mt-24 text-[1.3rem] font-semibold tracking-[-0.015em] text-ink"
+                >
+                  Časté dotazy
+                </h2>
+                <FaqList items={faq} />
+              </section>
+            ) : null}
           </div>
         </div>
       </div>

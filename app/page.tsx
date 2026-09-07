@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BoardAnnotated } from "@/components/board-annotated";
 import { ContactStrip } from "@/components/contact-strip";
 import { HeroSlider } from "@/components/hero-slider";
 import { PhotoBand } from "@/components/photo-band";
@@ -40,6 +41,22 @@ export default function Home() {
             </li>
           ))}
         </ul>
+      </section>
+
+      {/* Popsaná fotografie rozvaděče. Laikovi vysvětlí, co v té skříni je. */}
+      <section className="border-t border-line">
+        <div className="shell py-16 lg:py-20">
+          <h2 className="max-w-[26ch] text-[1.6rem] font-semibold tracking-[-0.02em] text-ink sm:text-[2rem]">
+            Co je v rozvaděči
+          </h2>
+          <p className="mt-5 max-w-measure text-[15px] leading-[1.7] text-ink-700">
+            Skříň, kterou většina lidí zavře a doufá, že to vydrží. Tady je
+            rozebraná na části, které na ní při revizi kontrolujeme.
+          </p>
+          <div className="mt-10">
+            <BoardAnnotated />
+          </div>
+        </div>
       </section>
 
       {/* Pás z realizací: provozovny, veřejné budovy, průmysl, rozvaděče. */}

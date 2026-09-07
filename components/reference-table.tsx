@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
 import { photo } from "@/lib/photos";
 import { references, referenceTypes, type ReferenceType } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -15,6 +16,7 @@ const withPhoto = references.filter((r) => r.photo);
 export function ReferenceTable() {
   const [filter, setFilter] = React.useState<Filter>("Vše");
   const [hovered, setHovered] = React.useState<string | null>(null);
+  const reduce = useReducedMotion();
 
   const rows =
     filter === "Vše" ? references : references.filter((r) => r.type === filter);
@@ -74,7 +76,12 @@ export function ReferenceTable() {
               </th>
             </tr>
           </thead>
-          <tbody>
+          <motion.tbody
+            key={filter}
+            initial={reduce ? { opacity: 1 } : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: reduce ? 0 : 0.2 }}
+          >
             {rows.map((r) => (
               <tr
                 key={r.name}
@@ -109,7 +116,7 @@ export function ReferenceTable() {
                 </td>
               </tr>
             ))}
-          </tbody>
+          </motion.tbody>
         </table>
 
         {rows.length === 0 ? (
