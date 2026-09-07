@@ -24,20 +24,27 @@ npm run build && npm start
 |---|---|
 | `/` | Fotografický hero s přepínáním snímků, obory jako obsah, pás z realizací, tabulka oprávnění |
 | `/nabidka-sluzeb` | Úplný výčet služeb z původního webu, vpravo rejstřík oborů |
-| `/elektroinstalace` | Postup zakázky jako svislá osa, fotopás, ukázky referencí |
+| `/elektroinstalace` | Postup zakázky jako svislá osa, rozcestník podstránek, fotopásy |
 | `/hromosvody` | Úzký textový sloupec, poznámky k normám na okraji |
 | `/revize` | Oprávnění nahoře, obsah revize jako číslované články |
 | `/zabezpecovaci-systemy` | Certifikát vlevo, komentář vpravo |
 | `/elektricke-vytapeni` | Srovnávací tabulka variant |
-| `/reference` | Filtrovatelná tabulka 25 objektů |
+| `/reference` | Filtrovatelná tabulka 25 objektů s náhledem fotografie u řádku |
 | `/fotogalerie` | 38 fotografií v pěti tématických skupinách, sloupcová sazba, lightbox |
 | `/certifikaty` | Registr dokladů s náhledy |
 | `/o-nas` | Text v úzkém sloupci, doložené milníky na okraji |
 | `/kontakt` | Telefon jako největší prvek stránky, formulář |
 
+Každý obor má vlastní podstránky, celkem dvanáct, na adresách
+`/{obor}/{tema}`. Obsah je v `lib/topics.ts`, kde si každé téma vybírá
+skladbu bloků (text, výčet, kroky, tabulka, technické údaje, poznámka,
+fotografie). Bloky renderuje `components/topic-page.tsx`, takže se stránky
+neopakují ve stejném rytmu. Nadpisy bloků plní obsah stránky vlevo, který
+zvýrazňuje část, ve které uživatel právě je.
+
 Staré adresy `/reference`, `/fotogalerie`, `/certifikaty`, `/kontakt`
 a `/nabidka-sluzeb` zůstaly zachované jako skutečné stránky, přesměrování
-tedy není potřeba.
+tedy není potřeba. `app/sitemap.ts` generuje sitemap ze stejných dat.
 
 ## Design systém
 

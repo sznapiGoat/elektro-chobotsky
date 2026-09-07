@@ -207,16 +207,38 @@ export const references: {
   name: string;
   place: string;
   type: ReferenceType;
+  /** Fotografie, u které je z jejího obsahu zřejmé, že patří k tomuto objektu. */
+  photo?: string;
 }[] = [
-  { name: "Jídelna ZŠ", place: "Divišov", type: "Veřejné stavby" },
-  { name: "Rekonstrukce sokolovny", place: "Divišov", type: "Veřejné stavby" },
+  {
+    name: "Jídelna ZŠ",
+    place: "Divišov",
+    type: "Veřejné stavby",
+    photo: "jidelna-zs-01",
+  },
+  {
+    name: "Rekonstrukce sokolovny",
+    place: "Divišov",
+    type: "Veřejné stavby",
+    photo: "sal-hvezdny-podhled",
+  },
   { name: "Rekonstrukce budovy Kaleidoskop", place: "Solenice", type: "Veřejné stavby" },
   { name: "Rozšíření veřejného osvětlení", place: "Drahňovice", type: "Veřejné stavby" },
   { name: "XPO Supply Chain CZ s.r.o., LC Měchnov", place: "Měchnov", type: "Průmysl a logistika" },
-  { name: "Skladová hala ED plošiny s.r.o.", place: "Divišov", type: "Průmysl a logistika" },
+  {
+    name: "Skladová hala ED plošiny s.r.o.",
+    place: "Divišov",
+    type: "Průmysl a logistika",
+    photo: "sklad-plosina",
+  },
   { name: "Výrobní hala KADATEC s.r.o.", place: "Zdislavice", type: "Průmysl a logistika" },
   { name: "Servisní hala EICHLER BUS s.r.o.", place: "Divišov", type: "Průmysl a logistika" },
-  { name: "Truhlářská dílna Interier Miriam s.r.o.", place: "Divišov", type: "Průmysl a logistika" },
+  {
+    name: "Truhlářská dílna Interier Miriam s.r.o.",
+    place: "Divišov",
+    type: "Průmysl a logistika",
+    photo: "truhlarska-dilna",
+  },
   {
     name: "Fotovoltaická elektrárna Václav Hanuš",
     place: "Divišov",
@@ -228,12 +250,18 @@ export const references: {
     name: "Prodejny Antonínovo pekařství",
     place: "Praha, Vinohrady a Vršovice",
     type: "Obchod a provozovny",
+    photo: "pekarstvi-prodejna",
   },
   { name: "Fitness centrum", place: "Divišov", type: "Obchod a provozovny" },
   { name: "Provozovna Šenk s.r.o.", place: "Tatouňovice", type: "Obchod a provozovny" },
   { name: "Provozovna FRAM s.r.o.", place: "", type: "Obchod a provozovny" },
   { name: "DATA SYSTEM SOLUTIONS s.r.o.", place: "Čerčany", type: "Obchod a provozovny" },
-  { name: "Herny DOMINO", place: "", type: "Obchod a provozovny" },
+  {
+    name: "Herny DOMINO",
+    place: "",
+    type: "Obchod a provozovny",
+    photo: "bowling-herna",
+  },
   { name: "Rekonstrukce vily Mgr. Martin Mašek", place: "Praha, Barrandov", type: "Bydlení" },
   { name: "RD Ing. Pavel Janovský", place: "Čerčany", type: "Bydlení" },
   { name: "RD Ing. Libor Truhelka", place: "", type: "Bydlení" },

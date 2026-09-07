@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ContactStrip } from "@/components/contact-strip";
 import { FieldFooterNav } from "@/components/field-footer-nav";
 import { FieldHead } from "@/components/field-head";
+import { TopicList } from "@/components/topic-list";
 import { PhotoBand } from "@/components/photo-band";
 
 export const metadata: Metadata = {
@@ -37,6 +38,8 @@ export default function Hromosvody() {
         title="Hromosvody"
         lead="Montáž a revize ochrany před bleskem podle ČSN EN 62305. Jímací soustavy, svody a zemniče na rodinných domech, halách i veřejných budovách."
       />
+
+      <TopicList field="hromosvody" />
 
       <div className="shell grid gap-14 py-14 lg:grid-cols-12 lg:gap-16 lg:py-20">
         {/* Úzký textový sloupec, aby se stránka dala číst jako technický list. */}

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ContactStrip } from "@/components/contact-strip";
 import { FieldFooterNav } from "@/components/field-footer-nav";
 import { FieldHead } from "@/components/field-head";
+import { TopicList } from "@/components/topic-list";
 import { PhotoBand } from "@/components/photo-band";
 
 export const metadata: Metadata = {
@@ -87,6 +88,8 @@ export default function Revize() {
         title="Revize"
         lead="Výchozí a periodické revize vyhrazených elektrických zařízení v rozsahu E2A, tedy zařízení do 1 kV AC a 1,5 kV DC včetně hromosvodů, v prostředí bez nebezpečí výbuchu."
       />
+
+      <TopicList field="revize" />
 
       {/* Oprávnění nejdřív. U revizí je to jediné, co rozhoduje. */}
       <section className="border-b border-line bg-paper-200">

@@ -106,7 +106,24 @@ export function HeroSlider() {
               }
             }}
           >
-            <ul className="-mx-1 flex snap-x gap-x-6 overflow-x-auto px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="flex items-end gap-5">
+              <div className="flex shrink-0 items-center gap-2">
+                <ArrowButton
+                  label="Předchozí fotografie"
+                  glyph="←"
+                  onClick={() => go(-1)}
+                />
+                <ArrowButton
+                  label="Další fotografie"
+                  glyph="→"
+                  onClick={() => go(1)}
+                />
+                <span className="ml-1 font-mono text-[12px] text-white/70">
+                  {index + 1}/{heroSlides.length}
+                </span>
+              </div>
+
+              <ul className="-mx-1 flex min-w-0 snap-x gap-x-6 overflow-x-auto px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {heroSlides.map((slide, i) => (
                 <li key={slide.file} className="shrink-0 snap-start">
                   <button
@@ -144,10 +161,32 @@ export function HeroSlider() {
                   </button>
                 </li>
               ))}
-            </ul>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function ArrowButton({
+  label,
+  glyph,
+  onClick,
+}: {
+  label: string;
+  glyph: string;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={label}
+      className="flex h-9 w-9 items-center justify-center border border-white/45 text-[15px] text-white transition-colors hover:border-white hover:bg-white/10"
+    >
+      <span aria-hidden>{glyph}</span>
+    </button>
   );
 }

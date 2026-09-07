@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ContactStrip } from "@/components/contact-strip";
 import { FieldFooterNav } from "@/components/field-footer-nav";
 import { FieldHead } from "@/components/field-head";
+import { TopicList } from "@/components/topic-list";
 import { PhotoBand } from "@/components/photo-band";
 import { Reveal } from "@/components/reveal";
 import { references } from "@/lib/site";
@@ -53,6 +54,8 @@ export default function Elektroinstalace() {
         title="Elektroinstalace"
         lead="Silnoproudé i slaboproudé rozvody v rodinných a bytových domech, provozovnách a průmyslových objektech. Vedeme zakázku od přípojky nízkého napětí až po revizní zprávu."
       />
+
+      <TopicList field="elektroinstalace" />
 
       {/* Postup zakázky jako svislá osa, ne mřížka karet. */}
       <section className="shell py-14 lg:py-20">

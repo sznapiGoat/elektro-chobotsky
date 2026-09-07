@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ContactStrip } from "@/components/contact-strip";
 import { FieldFooterNav } from "@/components/field-footer-nav";
 import { FieldHead } from "@/components/field-head";
+import { TopicList } from "@/components/topic-list";
 import { PhotoBand } from "@/components/photo-band";
 
 export const metadata: Metadata = {
@@ -19,6 +20,8 @@ export default function ZabezpecovaciSystemy() {
         title="Zabezpečovací systémy"
         lead="Montáž a rozšíření systémů JABLOTRON 100+ a Mercury. Instalace probíhá podle technické dokumentace výrobce, na koncesovanou živnost k ochraně majetku a osob."
       />
+
+      <TopicList field="zabezpecovaci-systemy" />
 
       <div className="shell grid gap-14 py-14 lg:grid-cols-12 lg:gap-16 lg:py-20">
         {/* Dokument vlevo, komentář vpravo. Certifikát je tu hlavní argument. */}

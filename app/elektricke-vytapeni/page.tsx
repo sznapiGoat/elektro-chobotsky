@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ContactStrip } from "@/components/contact-strip";
 import { FieldFooterNav } from "@/components/field-footer-nav";
 import { FieldHead } from "@/components/field-head";
+import { TopicList } from "@/components/topic-list";
 import { PhotoBand } from "@/components/photo-band";
 
 export const metadata: Metadata = {
@@ -55,6 +56,8 @@ export default function ElektrickeVytapeni() {
         title="Elektrické vytápění"
         lead="Přímotopy, elektrické kotle a akumulační kamna, topné kabely pro podlahy i pro ochranu okapů, potrubí a venkovních ploch."
       />
+
+      <TopicList field="elektricke-vytapeni" />
 
       {/* Srovnání variant jako tabulka, ne jako karty. */}
       <section className="shell py-14 lg:py-20">
